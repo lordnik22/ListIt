@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Http/Controllers/Controller.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Http/Middleware/Authenticate.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/User.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/APIToken.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Http/Controllers/ExampleController.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/bootstrap/app.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Http/Middleware/OriginAllow.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Console/Kernel.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Exceptions/Handler.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Http/routes.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Jobs/ExampleJob.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Events/Event.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Providers/AuthServiceProvider.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Events/ExampleEvent.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Providers/AppServiceProvider.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/public/index.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Listeners/ExampleListener.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/resources/views/index.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Jobs/Job.php</file>
+            <file>file:/C:/xampp/htdocs/ListIt_Project/ListIt/app/Providers/EventServiceProvider.php</file>
+        </group>
+    </open-files>
+</project-private>
