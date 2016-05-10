@@ -6,3 +6,4 @@ platforms/
 plugins/
 .env
 vendor/
+nbproject/private

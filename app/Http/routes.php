@@ -34,6 +34,7 @@ $app->group(['middleware' => 'origin'], function () use ($app) {
 
     $app->post('/login', function(Request $request) {
         /* $app['auth']->viaRequest('api', function ($request) {
+<<<<<<< HEAD
           echo $request->input('user') . " " . $request->input('password');
           if ($request->input('user') && $request->input('password')) {
           return \ListIt\User::where(['Name' => $request->input('user') /*,
@@ -41,6 +42,20 @@ $app->group(['middleware' => 'origin'], function () use ($app) {
           }
           }); */
 
+=======
+            echo $request->input('user') . " " . $request->input('password');
+            if ($request->input('user') && $request->input('password')) {
+                return \ListIt\User::where(['Name' => $request->input('user') /*,
+                                            'Password' => Hash::make($request->input('password')) ])->first();
+            }
+        }); */
+        
+        $this->validate($request, [
+            'user' => 'required',            
+            'password' => 'required'
+        ]);
+        
+>>>>>>> 92de3f99675f9fa3f9454b8f1d99562a1d13905c
         if ($request->input('user') && $request->input('password')) {
             $user = \ListIt\User::where(['Name' => $request->input('user')])->first();
 
@@ -54,7 +69,14 @@ $app->group(['middleware' => 'origin'], function () use ($app) {
         return response()->json(['error' => 'Authentication Failed'], 403);
     });
 
-    $app->post('/register', function(Request $request) {
+   
+    $app->post('/users', function(Request $request) {        
+        $this->validate($request, [
+            'user' => 'required|unique:user,Name',
+            'email' => 'required|email|unique:user,Email',
+            'password' => 'required'
+        ]);
+        
         $user = new \ListIt\User();
         $user->Name = $request->input('user');
         $user->Email = $request->input('email');
