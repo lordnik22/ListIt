@@ -6,81 +6,80 @@ use Illuminate\Support\Facades\Auth;
 use ListIt\APIToken;
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
-*/
+  |--------------------------------------------------------------------------
+  | Application Routes
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register all of the routes for an application.
+  | It is a breeze. Simply tell Lumen the URIs it should respond to
+  | and give it the Closure to call when that URI is requested.
+  |
+ */
 
-/*$app->get('/', function () use ($app) {
-    return $app->version();
-});*/
+/* $app->get('/', function () use ($app) {
+  return $app->version();
+  }); */
 
 $app->group(['middleware' => 'origin'], function () use ($app) {
-    
+
     $app->get('/', function() {
         /* $user = new \ListIt\User();
-        $user->Name = 'michi';
-        $user->Email = 'michi@michi.michi';
-        $user->Password = Hash::make('michi');
-        $user->save(); */
+          $user->Name = 'michi';
+          $user->Email = 'michi@michi.michi';
+          $user->Password = Hash::make('michi');
+          $user->save(); */
         return view('index');
         //return response()->json(['error' => 'asdasdasd'], 401);
     });
 
-    $app->post('/login', function(Request $request) {   
+    $app->post('/login', function(Request $request) {
         /* $app['auth']->viaRequest('api', function ($request) {
-            echo $request->input('user') . " " . $request->input('password');
-            if ($request->input('user') && $request->input('password')) {
-                return \ListIt\User::where(['Name' => $request->input('user') /*,
-                                            'Password' => Hash::make($request->input('password')) ])->first();
-            }
-        }); */
-        
+          echo $request->input('user') . " " . $request->input('password');
+          if ($request->input('user') && $request->input('password')) {
+          return \ListIt\User::where(['Name' => $request->input('user') /*,
+          'Password' => Hash::make($request->input('password')) ])->first();
+          }
+          }); */
+
         if ($request->input('user') && $request->input('password')) {
-            $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                                            
-                        
-            if ($user != null && Hash::check($request->input('password'), $user->Password)) {                
-                $user->APIToken = APIToken::generateToken(255);                                                                                        
-        
-                $user->save();                                              
+            $user = \ListIt\User::where(['Name' => $request->input('user')])->first();
+
+            if ($user != null && Hash::check($request->input('password'), $user->Password)) {
+                $user->APIToken = APIToken::generateToken(255);
+
+                $user->save();
             }
-            return response()->json(['APIToken' => $user->APIToken]);                                                                                              
+            return response()->json(['APIToken' => $user->APIToken]);
         }
         return response()->json(['error' => 'Authentication Failed'], 403);
-    });        
+    });
 
-    $app->post('/register', function(Request $request) {        
+    $app->post('/register', function(Request $request) {
         $user = new \ListIt\User();
-        $user->Name = $request->input('user');        
+        $user->Name = $request->input('user');
         $user->Email = $request->input('email');
         $user->Password = Hash::make($request->input('password'));
-        
-        $user->save();                        
+
+        $user->save();
     });
-    
-         
+
+
 
     $app->get('/test', function(Request $req) {
         return 'Hello, ' . $req->input('name');
     });
-    
 });
 
 $app->group(['middleware' => ['auth', 'origin']], function () use ($app) {
 
     $app->get('/users/{id}', function($id) {
         return \ListIt\User::find($id);
-    });                       
+    });
 
-    $app->get('/users', function() {        
+    $app->get('/users', function() {
         return \ListIt\User::all();
-    });                
-});   
+    });
+});
 
 
 
