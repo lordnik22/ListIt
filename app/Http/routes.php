@@ -41,6 +41,11 @@ $app->group(['middleware' => 'origin'], function () use ($app) {
             }
         }); */
         
+        $this->validate($request, [
+            'user' => 'required',            
+            'password' => 'required'
+        ]);
+        
         if ($request->input('user') && $request->input('password')) {
             $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                                            
                         
@@ -54,7 +59,15 @@ $app->group(['middleware' => 'origin'], function () use ($app) {
         return response()->json(['error' => 'Authentication Failed'], 403);
     });        
 
-    $app->post('/register', function(Request $request) {        
+    
+    
+    $app->post('/users', function(Request $request) {        
+        $this->validate($request, [
+            'user' => 'required|unique:user,Name',
+            'email' => 'required|email|unique:user,Email',
+            'password' => 'required'
+        ]);
+        
         $user = new \ListIt\User();
         $user->Name = $request->input('user');        
         $user->Email = $request->input('email');

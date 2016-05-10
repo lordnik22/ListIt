@@ -14,8 +14,8 @@
         "phpunit/phpunit": "^5.3"
     },
     "autoload": {
-        "psr-4": {"ListIt\\": "app/"}
-        
+        "psr-4": {"ListIt\\": "app/"},
+        "files": ["app/helpers.php"]        
     },
     "autoload-dev": {
         "classmap": [
