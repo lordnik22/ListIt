@@ -33,29 +33,11 @@ $app->group(['middleware' => 'origin'], function () use ($app) {
     });
 
     $app->post('/login', function(Request $request) {
-        /* $app['auth']->viaRequest('api', function ($request) {
-<<<<<<< HEAD
-          echo $request->input('user') . " " . $request->input('password');
-          if ($request->input('user') && $request->input('password')) {
-          return \ListIt\User::where(['Name' => $request->input('user') /*,
-          'Password' => Hash::make($request->input('password')) ])->first();
-          }
-          }); */
-
-=======
-            echo $request->input('user') . " " . $request->input('password');
-            if ($request->input('user') && $request->input('password')) {
-                return \ListIt\User::where(['Name' => $request->input('user') /*,
-                                            'Password' => Hash::make($request->input('password')) ])->first();
-            }
-        }); */
-        
         $this->validate($request, [
             'user' => 'required',            
             'password' => 'required'
         ]);
         
->>>>>>> 92de3f99675f9fa3f9454b8f1d99562a1d13905c
         if ($request->input('user') && $request->input('password')) {
             $user = \ListIt\User::where(['Name' => $request->input('user')])->first();
 
