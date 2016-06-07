@@ -19,5 +19,7 @@ class AppServiceProvider extends ServiceProvider
         if($request->isMethod('OPTIONS')) {
 		$this->app->options($request->path(), ['middleware' => 'origin', function(){ }]);
 	}
+        
+        \DB::connection()->enableQueryLog();
     }
 }
