@@ -97,6 +97,10 @@ $app->group(['middleware' => ['auth', 'origin']], function () use ($app) {
         return json_encode(getJsonReceipt($receipt), JSON_PRETTY_PRINT);
     });
 
+    $app->get('/products', function() {
+        return \ListIt\Product::all();
+    });
+    
     $app->delete('/receipts/{id}', function($id) {
         \ListIt\Receipt_Product::where('ReceiptID', $id)->delete();
         \ListIt\Receipt::find($id)->delete();
