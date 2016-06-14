@@ -11,11 +11,6 @@ use ListIt\Services\ConversionService;
 
 class HomeController extends Controller {
     
-    public function __construct(ConversionService $conv) {
-        $this->conv = $conv;
-        
-    }
-    
     public function index() {
         return view('index');
     }

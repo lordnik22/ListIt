@@ -9,13 +9,13 @@
 namespace ListIt\Services;
 
 class ConversionService {
-    public function getJsonReceipt($receipt) {
+    public function getJsonReceipt($receipt) {        
         return [
             'ID' => $receipt->ID,
             'Datum' => $receipt->Datum,
-            'Receipt_Products' => $receipt->receipt_products->map('getJsonReceiptProduct'),
-            'Company' => getJsonCompany($receipt->company_shoplocation->company),
-            'ShopLocation' => getJsonShopLocation($receipt->company_shoplocation->shoplocation),
+            'Receipt_Products' => $receipt->receipt_products->map([$this, 'getJsonReceiptProduct']),
+            'Company' => $this->getJsonCompany($receipt->company_shoplocation->company),
+            'ShopLocation' => $this->getJsonShopLocation($receipt->company_shoplocation->shoplocation),
         ];
     }
 

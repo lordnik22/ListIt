@@ -36,8 +36,8 @@ $app->group(['middleware' => 'origin', 'prefix' => '/api', 'namespace' => 'ListI
         $this->validate($request, [
             'user' => 'required',
             'password' => 'required'
-        ]);
-
+        ]);        
+        
         if ($request->input('user') && $request->input('password')) {
             $user = \ListIt\User::where(['Name' => $request->input('user')])->first();
 
@@ -67,21 +67,15 @@ $app->group(['middleware' => ['auth', 'origin'], 'prefix' => '/api', 'namespace'
         return \ListIt\User::find($id);
     });
 
-    $app->get('/users', 'UserController@get');
+    $app->get('/users', 'UserController@get');   
+    
+    $app->get('/receipts', 'ReceiptController@get');                             
 
-    $app->get('/receipts', function() {
-        return json_encode(\ListIt\Receipt::with('receipt_products', 'receipt_products.product')->get()->map('getJsonReceipt'), JSON_PRETTY_PRINT);
+    $app->get('/receipts/{id}', 'ReceiptController@getOne');
 
-        /* return json_encode(array_merge(\ListIt\Receipt::with('receipt_products', 'receipt_products.product')->get()->map(function($receipt) {
-          return getjsonReceipt($receipt);
-          })->toArray(), ['SQLQueries' => \DB::getQueryLog()]), JSON_PRETTY_PRINT); */
-    });            
-
-    $app->get('/receipts/{id}', 'ReceiptController@get($id)');
-
-    $app->get('/products', function() {
-        return \ListIt\Product::all();
-    });
+    $app->post('/products', 'ProductController@create');
+    
+    $app->get('/products', 'ProductController@get');    
     
     $app->get('/products/{id}', function($id) {        
         return \ListIt\Product::where('ProductID', $id);

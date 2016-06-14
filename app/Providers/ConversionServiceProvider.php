@@ -8,6 +8,8 @@
 
 namespace ListIt\Providers;
 
+use Illuminate\Support\ServiceProvider;
+
 class ConversionServiceProvider extends ServiceProvider
 {
     /**
@@ -20,5 +22,7 @@ class ConversionServiceProvider extends ServiceProvider
         $this->app->singleton('ListIt\Services\ConversionService', function ($app) {
             return new \ListIt\Services\ConversionService;
         });
+        
+        //$this->app['conv'] = new \ListIt\Services\ConversionService;
     }
 }
