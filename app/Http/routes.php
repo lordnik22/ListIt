@@ -90,8 +90,8 @@ $app->group(['middleware' => ['auth', 'origin']], function () use ($app) {
         /* return json_encode(array_merge(\ListIt\Receipt::with('receipt_products', 'receipt_products.product')->get()->map(function($receipt) {
           return getjsonReceipt($receipt);
           })->toArray(), ['SQLQueries' => \DB::getQueryLog()]), JSON_PRETTY_PRINT); */
-    });
-
+    });    
+    
     $app->get('/receipts/{id}', function($id) {
         $receipt = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')->findOrFail($id);
         return json_encode(getJsonReceipt($receipt), JSON_PRETTY_PRINT);
@@ -99,6 +99,10 @@ $app->group(['middleware' => ['auth', 'origin']], function () use ($app) {
 
     $app->get('/products', function() {
         return \ListIt\Product::all();
+    });
+    
+    $app->get('/products/{id}', function($id) {        
+        return \ListIt\Product::where('ProductID', $id);
     });
     
     $app->delete('/receipts/{id}', function($id) {
