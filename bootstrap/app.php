@@ -81,7 +81,7 @@ $app->routeMiddleware([
 
 $app->register(ListIt\Providers\AppServiceProvider::class);
 $app->register(ListIt\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+$app->register(ListIt\Providers\ConversionServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
