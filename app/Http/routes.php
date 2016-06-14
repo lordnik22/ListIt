@@ -20,7 +20,7 @@ use ListIt\APIToken;
   return $app->version();
   }); */
 
-$app->group(['middleware' => 'origin'], function () use ($app) {
+$app->group(['middleware' => 'origin', 'prefix' => '/api', 'namespace' => 'ListIt\Http\Controllers\Api'], function () use ($app) {
 
     $app->get('/', function() {
         /* $user = new \ListIt\User();
@@ -30,6 +30,71 @@ $app->group(['middleware' => 'origin'], function () use ($app) {
           $user->save(); */
         return view('index');
         //return response()->json(['error' => 'asdasdasd'], 401);
+    });
+
+    $app->post('/login', function(Request $request) {
+        $this->validate($request, [
+            'user' => 'required',
+            'password' => 'required'
+        ]);
+
+        if ($request->input('user') && $request->input('password')) {
+            $user = \ListIt\User::where(['Name' => $request->input('user')])->first();
+
+            if ($user != null && Hash::check($request->input('password'), $user->Password)) {
+                $user->APIToken = APIToken::generateToken(255);
+
+                $user->save();
+            }
+            return response()->json(['APIToken' => $user->APIToken]);
+        }
+        return response()->json(['error' => 'Authentication Failed'], 403);
+    });
+
+
+    $app->post('/users', 'UserController@create');
+
+
+
+    $app->get('/test', function(Request $req) {
+        return 'Hello, ' . $req->input('name');
+    });
+});
+
+$app->group(['middleware' => ['auth', 'origin'], 'prefix' => '/api', 'namespace' => 'ListIt\Http\Controllers\Api'], function () use ($app) {
+
+    $app->get('/users/{id}', function($id) {
+        return \ListIt\User::find($id);
+    });
+
+    $app->get('/users', 'UserController@get');
+
+    $app->get('/receipts', function() {
+        return json_encode(\ListIt\Receipt::with('receipt_products', 'receipt_products.product')->get()->map('getJsonReceipt'), JSON_PRETTY_PRINT);
+
+        /* return json_encode(array_merge(\ListIt\Receipt::with('receipt_products', 'receipt_products.product')->get()->map(function($receipt) {
+          return getjsonReceipt($receipt);
+          })->toArray(), ['SQLQueries' => \DB::getQueryLog()]), JSON_PRETTY_PRINT); */
+    });
+
+    $app->get('/receipts/{id}', 'ReceiptController@get($id)');
+
+    $app->get('/products', function() {
+        return \ListIt\Product::all();
+    });
+    
+    $app->delete('/receipts/{id}', function($id) {
+        \ListIt\Receipt_Product::where('ReceiptID', $id)->delete();
+        \ListIt\Receipt::find($id)->delete();
+    });
+});
+
+$app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'], function () use ($app) {
+
+    $app->get('/', 'HomeController@index');
+    
+    $app->get('/login', function() {
+        return view('login', ['name' => 'Peter "><script>alert(1)</script>']);
     });
 
     $app->post('/login', function(Request $request) {
@@ -74,70 +139,7 @@ $app->group(['middleware' => 'origin'], function () use ($app) {
     });
 });
 
-$app->group(['middleware' => ['auth', 'origin']], function () use ($app) {
 
-    $app->get('/users/{id}', function($id) {
-        return \ListIt\User::find($id);
-    });
 
-    $app->get('/users', function() {
-        return \ListIt\User::all();
-    });
-
-    $app->get('/receipts', function() {
-        return json_encode(\ListIt\Receipt::with('receipt_products', 'receipt_products.product')->get()->map('getJsonReceipt'), JSON_PRETTY_PRINT);
-
-        /* return json_encode(array_merge(\ListIt\Receipt::with('receipt_products', 'receipt_products.product')->get()->map(function($receipt) {
-          return getjsonReceipt($receipt);
-          })->toArray(), ['SQLQueries' => \DB::getQueryLog()]), JSON_PRETTY_PRINT); */
-    });
-
-    $app->get('/receipts/{id}', function($id) {
-        $receipt = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')->findOrFail($id);
-        return json_encode(getJsonReceipt($receipt), JSON_PRETTY_PRINT);
-    });
-
-    $app->get('/products', function() {
-        return \ListIt\Product::all();
-    });
-    
-    $app->delete('/receipts/{id}', function($id) {
-        \ListIt\Receipt_Product::where('ReceiptID', $id)->delete();
-        \ListIt\Receipt::find($id)->delete();
-    });
-});
-
-function getJsonReceipt($receipt) {
-    return [
-        'ID' => $receipt->ID,
-        'Datum' => $receipt->Datum,
-        'Receipt_Products' => $receipt->receipt_products->map('getJsonReceiptProduct'),
-        'Company' => getJsonCompany($receipt->company_shoplocation->company),
-        'ShopLocation' => getJsonShopLocation($receipt->company_shoplocation->shoplocation),
-    ];
-}
-
-function getJsonReceiptProduct($receipt_product) {
-    return [
-        'Quantity' => $receipt_product->Quantity,
-        'TotalPrice' => $receipt_product->TotalPrice,
-        'Product' => $receipt_product->product
-    ];
-}
-
-function getJsonCompany($company) {
-    return [
-        'ID' => $company->ID,
-        'Name' => $company->Name
-    ];
-}
-
-function getJsonShopLocation($shoplocation) {
-    return [
-        'ID' => $shoplocation->ID,
-        'Region' => $shoplocation->region->Name,
-        'Country' => $shoplocation->region->country->Name
-    ];
-}
 
 //$app->get('/users/trest', 'UserController@action');
