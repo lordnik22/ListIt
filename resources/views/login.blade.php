@@ -4,7 +4,7 @@
 
 @section('content')
 <form>
-    <input type="text" name="name" value="@{{ $name }}" />
+    <input type="text" name="name" value="{{ $name }}" />
 </form>
 
 @endsection

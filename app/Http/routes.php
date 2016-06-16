@@ -92,7 +92,11 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
     $app->get('/', 'HomeController@index');
     
     $app->get('/login', function() {
-        return view('login', ['name' => 'Peter "><script>alert(1)</script>']);
+        return view('login', ['name' => 'Peter']);
+    });
+    
+    $app->get('/home', function() {
+        return view('index');
     });
 
     $app->post('/login', function(Request $request) {
