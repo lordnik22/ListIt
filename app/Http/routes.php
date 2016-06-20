@@ -103,9 +103,9 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         $this->validate($request, [
             'user' => 'required',
             'password' => 'required'
-        ]);
-
-        if ($request->input('user') && $request->input('password')) {
+        ]);        
+        
+        /*if ($request->input('user') && $request->input('password')) {
             $user = \ListIt\User::where(['Name' => $request->input('user')])->first();
 
             if ($user != null && Hash::check($request->input('password'), $user->Password)) {
@@ -114,11 +114,16 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
                 $user->save();
             }
             return response()->json(['APIToken' => $user->APIToken]);
-        }
-        return response()->json(['error' => 'Authentication Failed'], 403);
+        }*/
+        
+        //$request->session()->put('key', 'value');
+        //$request->session(['key' => 'Hallo Riiico']);
+        return redirect('receipt');
+        //return view('receipt');
     });
 
-
+    
+    
     $app->post('/users', function(Request $request) {
         $this->validate($request, [
             'user' => 'required|unique:user,Name',
@@ -130,16 +135,26 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         $user->Name = $request->input('user');
         $user->Email = $request->input('email');
         $user->Password = Hash::make($request->input('password'));
-
+        
         $user->save();
     });
-
-
-
-    $app->get('/test', function(Request $req) {
-        return 'Hello, ' . $req->input('name');
+    
+    $app->get('/receipt', function(Request $request) {
+        //$value = $request->session()->get('key');
+        //echo $value;       
+        
+        var_dump(\ListIt\Receipt::all());
+        
+        return view('receipt');
     });
+    
 });
+
+$app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Controllers'], function () use ($app) {
+    
+    
+});
+
 
 
 

@@ -1,7 +1,9 @@
-@extends('layouts.loggedOut')
+@extends('layouts.loggedIn')
 
 @section('title', 'Welcome')
 
 @section('content')
-asdasd
+Quittungen
+
+
 @endsection
