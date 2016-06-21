@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 10. Mai 2016 um 15:32
+-- Erstellungszeit: 21. Jun 2016 um 15:26
 -- Server-Version: 10.1.13-MariaDB
 -- PHP-Version: 5.6.20
 
@@ -46,8 +46,8 @@ INSERT INTO `company` (`ID`, `Name`) VALUES
 
 CREATE TABLE `company_shoplocation` (
   `ID` int(10) UNSIGNED NOT NULL,
-  `CompanyID` int(10) UNSIGNED NOT NULL,
-  `ShoplocationID` int(10) UNSIGNED NOT NULL
+  `CompanyID` int(10) UNSIGNED DEFAULT NULL,
+  `ShoplocationID` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -91,7 +91,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`ID`, `Name`) VALUES
-(1, 'Menu M 9 McNuggets');
+(1, 'Menu M 9 McNuggets'),
+(2, 'Hello Kitty Tasche');
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,7 @@ CREATE TABLE `receipt` (
   `ID` int(10) UNSIGNED NOT NULL,
   `Datum` datetime NOT NULL,
   `UserID` int(10) UNSIGNED NOT NULL,
-  `CompanyShoplocationID` int(10) UNSIGNED NOT NULL
+  `CompanyShoplocationID` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -111,7 +112,8 @@ CREATE TABLE `receipt` (
 --
 
 INSERT INTO `receipt` (`ID`, `Datum`, `UserID`, `CompanyShoplocationID`) VALUES
-(2, '2015-11-26 13:00:36', 1, 1);
+(6, '2016-05-24 00:00:00', 1, 1),
+(7, '2016-06-12 00:00:00', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -132,7 +134,9 @@ CREATE TABLE `receipt_product` (
 --
 
 INSERT INTO `receipt_product` (`ID`, `ReceiptID`, `ProductID`, `Quantity`, `TotalPrice`) VALUES
-(2, 2, 1, 1, '13.6000');
+(3, 6, 1, 2, '30.0000'),
+(4, 6, 2, 1, '200.0000'),
+(7, 6, 2, 2, '3.0000');
 
 -- --------------------------------------------------------
 
@@ -143,7 +147,7 @@ INSERT INTO `receipt_product` (`ID`, `ReceiptID`, `ProductID`, `Quantity`, `Tota
 CREATE TABLE `region` (
   `ID` int(10) UNSIGNED NOT NULL,
   `Name` varchar(45) NOT NULL,
-  `CountryID` int(10) UNSIGNED NOT NULL
+  `CountryID` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -161,9 +165,9 @@ INSERT INTO `region` (`ID`, `Name`, `CountryID`) VALUES
 
 CREATE TABLE `shoplocation` (
   `ID` int(10) UNSIGNED NOT NULL,
-  `RegionID` int(10) UNSIGNED NOT NULL,
-  `StreetID` int(10) UNSIGNED NOT NULL,
-  `StreetNr` varchar(5) NOT NULL DEFAULT '0'
+  `RegionID` int(10) UNSIGNED DEFAULT NULL,
+  `StreetID` int(10) UNSIGNED DEFAULT NULL,
+  `StreetNr` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -189,7 +193,7 @@ CREATE TABLE `street` (
 --
 
 INSERT INTO `street` (`ID`, `Name`) VALUES
-(1, 'Zugerstrasse 62');
+(1, 'Zugerstrasse');
 
 -- --------------------------------------------------------
 
@@ -230,11 +234,6 @@ INSERT INTO `user` (`ID`, `Name`, `Password`, `EMail`, `APIToken`) VALUES
 (61, 'hello2', '$2y$10$IwLYkmxusUrOtti2pbWmWuzmloETeX7imWc.4Ae0I5WUmBt/pWqFO', '12', NULL),
 (62, 'asdasd', '$2y$10$ROaY4SCaToKS.RqqNLhOSOCXLqTZvmz8d5FDIs9puoxSfbfhyKTpK', 'asdasd', NULL),
 (63, 'adasdaadsad', '$2y$10$8T5.5EpOP6nl8PphrQf5Ke87ytLgv8qY.T5Y5mhJeD79SU5.zXw2W', 'adwaaw', NULL),
-(65, 'b', '$2y$10$VrG1C4V4bLLzKgO9p0wBsuGulbDkLP/t2GF0hpAR8weeqWvloeGMO', 'b', NULL),
-(66, 'c', '$2y$10$QlkR6K1Qswds3pyM/dEAA.WMCPFFpAIKaw23n8hacL7sp5Jb66/BS', 'b', NULL),
-(67, 'v', '$2y$10$hgQppdvPbxFzn/pik3xRC.H8ibQxUYbN0es6NUcooCGpXlKOdFSZO', 'b', NULL),
-(69, 'bj', '$2y$10$2Q2LrV/eLGP.n6yGeg8TAuSxAi0z9yjSFrwUpQPl9SxUyNJ6efnFG', 'b', NULL),
-(70, 'j', '$2y$10$kVZNb/BJRx5E/cXkINAuveAuu3HF63XFEb5mpl3UgXa6GHsBUX7hC', 'b', NULL),
 (71, 'w', '$2y$10$vqFB/C5KQ7FYH/e/7Arp8uzQcREkPgnjvF0w9zHjcILugZxg3SLJC', 'b', NULL),
 (72, 'q', '$2y$10$dMZE35/YkJnSBNo7zZkVx..qunGInJ0r27wn10SVlrb.BbR37Kx4i', 'b', '4T0A8NxoieUCE8M2rNZWtc1WjrhWHMW3sF0mezPe1XOYqMgXz0FTNa02dlRLOLlQEKGQkWuEkjAxYSmo7HYZgjFe3XuioHpnqyCFBS7fF1f4QwEkSqDd8TSycpvUPaVHMUqbIIsEr5nJV6dHJtS8eE3QbC5CHqINJIsev2rlpMWJJ0KfjiojITdPUhNDIa6RZ0Aujle33w733Ulsy7AZd2k0Mj5TTbkWrxIwNtNWs81LEWOxzQgnmtxEmWr3R0I'),
 (73, 'beta', '$2y$10$MF/M872Ko643ufTaOstHOe5vWl9qZhdMiiZKVJJ5Ck.s/6gYrBpjG', 'your', 'axQLx5VFnx6wdcM4Dcb153HElY7wHYo3z0OibBiWN3d5Brk5bCPUBztiyqLjD3H3fIYT8qOVYCnJWvus1f8XLk6fH57wzO8pmj05Lwzr5vpvKCPrwGSFF2q8Y8sElH8FHmQJ1kr0v6YzRtOrXaVFZtEABxoFU5aaTrDIyN3E4jhpv34KbYyNWCgvwPO8OjIuaSR2wbXNmxPF18xDrgYkg0RLKxFUZlhFVkY2AsjChF4qMeLU3lLdNnn7GzNOtLM'),
@@ -242,7 +241,7 @@ INSERT INTO `user` (`ID`, `Name`, `Password`, `EMail`, `APIToken`) VALUES
 (75, 'hadkwd', '$2y$10$0dFUYTedPZpq/xZ3hLu6CekLQu4YLXllOHpZvGogavPfuFEKy5PZy', 'zztrashtrashzz@gmail.com', NULL),
 (76, 'ologisch', '$2y$10$Jv9hPZE6zn3ypnb7Re7ZxucbUYxADfbOso2kt1vEM/AmUIs8Mpm.C', 'olighsc@gmail.com', NULL),
 (77, 'asd', '$2y$10$Ayj/ucp87jizeQmYLma4juS48qkpM7fWmIThmx7DIATNZ.xBjS3CK', 'a.a@a.a', NULL),
-(78, 'alpha', '$2y$10$QVWBFrb7itFOuxGGvq7Qb./7iRtps3BMy4Zrlmip1f6NUdD5UrkTy', 'romenion@gmail.com', 'Nqzv4IsY073KrGGYaSSC5nyRwiP6kFddXcDHb8XRYP4L2gve8WvOJGPkraQA5oDrP7s6JduRzqcAouPM3Y3UIfMFiwwIJjflhWycT56CjAeLCxYuWizoQkUHYT8DbYpt8khZg8GNAGXu3F4uWvaXl2O747YeBJ63PsxqaHM1USXvzrHwnRQcWdpRI2YMABXoQw1mIaCPLEYXzTjbFIaPehV6Ml4gWMFvQIwG2bI755NM6QRGehLsMnF8mMRYT8q'),
+(78, 'alpha', '$2y$10$LD.AbVrP91fRPIpb6rgd9OLGd.5xQN.63JtNWFPBtCrd3iU0FNMCK', 'romenion@gmail.com', 'nKtXu88vuzfCdeZHEnrhkYamqIT2eXaWsY03sqNGdfwbbLLJPkPtj4zg4j2edUyZl2laGAHAqTWJ8i2KS8sHWeVnQHMNKpMeij0T6Nd5aPPYXtKgTdVWf8WWLJ4DNBuXFQJIQRKzueFhoS12bLBEH5NqpELg7RINXVHLZyeCOEIhOI2RTdzt63cTM3dL0WIxNHNw2oYwHXlRi3VoTnMa5LRxNR7it5T3HaVkOh37MqZeFHPDCWabW7FeyFDyLKE'),
 (79, 'roudlong', '$2y$10$I2MsW6YpludfWY1GkNN86Og9/hFXk7D8qFiEsV3J4sMLPVU/v1Zvy', 'roudlong@gmail.com', NULL),
 (80, 'gorgi', '$2y$10$1ez2iDoKZLbAyaL7tIvJnOl0dcNLuJDu4miLlcX8GHsdOLr9.PO2G', 'gorgi@gmail.com', NULL),
 (81, 'alp', '$2y$10$ZJl9jIipKAhu3GSCjHNMcup5csZcdGN/.bMtCGyWT8GlzpkkBBiVS', 'alp@gmail.com', NULL),
@@ -250,7 +249,8 @@ INSERT INTO `user` (`ID`, `Name`, `Password`, `EMail`, `APIToken`) VALUES
 (83, 'adds', '$2y$10$z.QNscQlLEJcwa4ym3fGs.7S2txSqzloci5Qaw/gxfuGNfM6nRrV6', 'adds@gmail.com', NULL),
 (84, 'lol', '$2y$10$n1E68CrbmNPuzXY2rtyrCezkNIrfG9uL5kODunHinnGQ4RxEmKIPq', 'lol@gmail.com', NULL),
 (85, 'lol1', '$2y$10$DPiIKMbnCx4clmpkQncQXeurWFkoHZfIdwZi7m8/tIC4HbLBItOxS', 'lol1@gmail.com', NULL),
-(86, 'road', '$2y$10$pu5xA8F2NMOGjAluk1nYSuI91tWPWUH1wJMiPKwI7iIQuk5iqB2bS', 'road@gmail.com', NULL);
+(86, 'road', '$2y$10$pu5xA8F2NMOGjAluk1nYSuI91tWPWUH1wJMiPKwI7iIQuk5iqB2bS', 'road@gmail.com', NULL),
+(87, 'aha', '$2y$10$3khr5gpMEZmomWNSZoqbSOf2YkziJIRafeL5/t3eBohmXIU1CpYoW', 'aha@gmail.com', NULL);
 
 --
 -- Indizes der exportierten Tabellen
@@ -350,17 +350,17 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT für Tabelle `product`
 --
 ALTER TABLE `product`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT für Tabelle `receipt`
 --
 ALTER TABLE `receipt`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT für Tabelle `receipt_product`
 --
 ALTER TABLE `receipt_product`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT für Tabelle `region`
 --
@@ -380,7 +380,7 @@ ALTER TABLE `street`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 --
 -- Constraints der exportierten Tabellen
 --
