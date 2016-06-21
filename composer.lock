@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eca76eb229064529b1242f3310550227",
-    "content-hash": "07c826a87a3c1b077d992ab90d120b82",
+    "hash": "96699060722778fda70d08731795934d",
+    "content-hash": "c31d3b1a2702c7ddd0a1d1606963ccf4",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2199,6 +2199,43 @@
             "time": "2016-06-06 11:33:26"
         },
         {
+            "name": "tck/odbc",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bencarter78/odbc.git",
+                "reference": "e53678aac762a4e4ee6d7c3fcd6a70f75b7222d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bencarter78/odbc/zipball/e53678aac762a4e4ee6d7c3fcd6a70f75b7222d4",
+                "reference": "e53678aac762a4e4ee6d7c3fcd6a70f75b7222d4",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "TCK\\Odbc": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "tck",
+                    "email": "ben@thecreativekind.co.uk"
+                }
+            ],
+            "description": "ODBC Connector for Laravel",
+            "time": "2016-02-13 09:32:19"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.3.0",
             "source": {
@@ -3549,7 +3586,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "tck/odbc": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

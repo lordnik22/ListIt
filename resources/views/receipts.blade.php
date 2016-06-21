@@ -8,7 +8,7 @@
     You are not signed in.
 @endunless
 
-<a>Quittung hinzufügen</a>
+<a href="/createreceipt">Quittung hinzufügen</a>
 
 Quittungen
 @forelse ($receipts as $receipt)

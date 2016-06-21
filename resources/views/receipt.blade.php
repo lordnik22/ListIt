@@ -10,7 +10,7 @@
 
 {{ $receipt["ID"] }}
 
-<button>Produkt hinzufügen</button>
+<a href="/createproduct">Produkt hinzufügen</a>
 
 @forelse ($receipt["Receipt_Products"] as $receipt_product)
     <li>{{ $receipt_product["TotalPrice"] }}</li>

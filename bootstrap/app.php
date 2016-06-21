@@ -92,12 +92,12 @@ $app->routeMiddleware([
 |
 */
 
+$app->register(TCK\Odbc\OdbcServiceProvider::class);
 $app->register(ListIt\Providers\AppServiceProvider::class);
 $app->register(ListIt\Providers\LumenFixSessionManagerProvider::class);
 $app->register(ListIt\Providers\AuthServiceProvider::class);
 $app->register(ListIt\Providers\ConversionServiceProvider::class);
 $app->register(\Illuminate\Session\SessionServiceProvider::class);
-
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

@@ -3,49 +3,17 @@
 @section('title', 'Quittung erstellen')
 
 @section('content')
-
-<form>
+@parent
+<form method="POST" action="/createreceipt">
     Firma:
-    <input type="text" /></br>
+    <input type="text" name="company" /></br>
     
     Standort:
-    Land: <input type="text" name="land"/>
-    Region: <input type="text" />    
-    Strasse: <input type="text" />
-    StrassenNr <input type="text" />   
+    Land: <input type="text" name="country"/>
+    Region: <input type="text" name="region" />    
+    Strasse: <input type="text" name="street" />
+    StrassenNr <input type="text" name="streetNr" />   
       
-    <input type="submit" />
+    <input type="submit" value="Speichern" />
 </form>
-
-
-<form action='bla' method='POST'>
-    <input datum>
-    
-    <span><?php $productvariable ?></span>
-    <div producte>
-        
-    <div product>
-        <input name[]>
-        <input preis[]>
-        <input anzahl[]>
-    </div>
-    Später können noch mehr hinzugefügt werden.
-    
-    <div company>
-        <input name>
-    </div>
-    <div location>
-        <input strasenr>
-    </div>
-    
-</form>
-
 @endsection
-
-
-Mcdonalsburgern
-littlbigpila
-
-
-labelbutton
-
