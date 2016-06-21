@@ -2,6 +2,7 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+
 try {
     (new Dotenv\Dotenv(__DIR__.'/../'))->load();
 } catch (Dotenv\Exception\InvalidPathException $e) {
@@ -22,6 +23,8 @@ try {
 $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
+
+$app->configure('session');
 
 $app->withFacades();
 
@@ -48,6 +51,14 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+/* $app['config']['session.driver'] = 'file';
+$app['config']['session.lottery'] = [1, 5];
+$app['config']['session.expire_on_close'] = true;
+$app['config']['session.path'] = '/';
+$app['config']['session.domain'] = 'listit';
+$app['config']['session.cookie'] = 'SESS'; */
+
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -60,7 +71,9 @@ $app->singleton(
 */
 
  $app->middleware([
-    App\Http\Middleware\ExampleMiddleware::class
+    //Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+    Illuminate\Session\Middleware\StartSession::class,
+    //Illuminate\View\Middleware\ShareErrorsFromSession::class,
  ]);
 
 $app->routeMiddleware([
@@ -80,8 +93,10 @@ $app->routeMiddleware([
 */
 
 $app->register(ListIt\Providers\AppServiceProvider::class);
+$app->register(ListIt\Providers\LumenFixSessionManagerProvider::class);
 $app->register(ListIt\Providers\AuthServiceProvider::class);
 $app->register(ListIt\Providers\ConversionServiceProvider::class);
+$app->register(\Illuminate\Session\SessionServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

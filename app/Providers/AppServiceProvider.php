@@ -14,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        
     	/** @var \Illuminate\Http\Request $request */
         $request = $this->app->make('request');
         if($request->isMethod('OPTIONS')) {

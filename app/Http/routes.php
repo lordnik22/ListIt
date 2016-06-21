@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use ListIt\APIToken;
+use \ListIt\Services\ConversionService;
 
 /*
   |--------------------------------------------------------------------------
@@ -92,7 +93,7 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
     $app->get('/', 'HomeController@index');
     
     $app->get('/login', function() {
-        return view('login', ['name' => 'Peter']);
+        return view('login', ['name' => 'alpha', 'password' => 'beta']);
     });
     
     $app->get('/home', function() {
@@ -105,21 +106,19 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
             'password' => 'required'
         ]);        
         
-        /*if ($request->input('user') && $request->input('password')) {
-            $user = \ListIt\User::where(['Name' => $request->input('user')])->first();
-
+        if ($request->input('user') && $request->input('password')) {
+            $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                        
+            
             if ($user != null && Hash::check($request->input('password'), $user->Password)) {
                 $user->APIToken = APIToken::generateToken(255);
 
                 $user->save();
-            }
-            return response()->json(['APIToken' => $user->APIToken]);
-        }*/
-        
-        //$request->session()->put('key', 'value');
-        //$request->session(['key' => 'Hallo Riiico']);
-        return redirect('receipt');
-        //return view('receipt');
+                
+                $request->session()->put('api-token', $user->APIToken);                             
+            }                                                                      
+        }
+        return redirect('receipts');
+        //$request->session()->put('key', 'value');               
     });
 
     
@@ -139,20 +138,15 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         $user->save();
     });
     
-    $app->get('/receipt', function(Request $request) {
-        //$value = $request->session()->get('key');
-        //echo $value;       
-        
-        var_dump(\ListIt\Receipt::all());
-        
-        return view('receipt');
-    });
+    
     
 });
 
-$app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Controllers'], function () use ($app) {
+$app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Controllers'], function () use ($app) {       
     
+    $app->get('/receipts', 'ReceiptController@get');
     
+    $app->get('/receipt/{id}', 'ReceiptController@getOne');
 });
 
 

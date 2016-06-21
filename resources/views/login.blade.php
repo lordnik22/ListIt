@@ -7,7 +7,7 @@
     Benutzername:
     <input type="text" name="user" value="{{ $name }}" />
     Passwort:
-    <input type="password" name="password" />
+    <input type="password" name="password" value="{{ $password }}"/>
     <input type="submit"/>
 </form>
 

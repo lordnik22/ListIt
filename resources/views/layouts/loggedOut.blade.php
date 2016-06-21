@@ -4,7 +4,7 @@
         <link rel="stylesheet" type="text/css" href="/css/style.css" />                     
         <title>@yield('title') - ListIt</title>
     </head>
-    <body>
+    <body id="loggedOut">
         
         ListIt
         <img src="/img/logoV2_0.png" />

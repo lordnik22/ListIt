@@ -32,8 +32,12 @@ class AuthServiceProvider extends ServiceProvider {
         $this->app['auth']->viaRequest('api', function ($request) {
             if ($request->header('X-APIToken')) {
                 return \ListIt\User::where('APIToken', $request->header('X-APIToken'))->first();
-            }          
-            
+            }  
+            else if($request->session()->get('api-token')) {
+                return \ListIt\User::where('APIToken', $request->session()->get('api-token'))->first();
+            }
+                
+                
             /*
             if ($request->input('APIToken')) {
                 return \ListIt\User::where('APIToken', $request->input('APIToken'))->first();
