@@ -10,12 +10,14 @@
      <a href="/receipts">Quittungen</a>
     {{ $receipt["ID"] }}
     
-    <a href="/createproduct">Produkt hinzufügen</a>
+    <a href="/receipt/{{ $receipt["ID"] }}/createproduct">Produkt hinzufügen</a>
     <div class="receiptBlock">
         <ul>
             
-            @forelse ($receipt["Receipt_Products"] as $receipt_product)
-                <li>{{ $receipt_product["TotalPrice"] }}</li>
+            @forelse ($receipt["Receipt_Products"] as $receipt_product)                
+                <li>Produkt: {{ $receipt_product["Product"]['Name'] }}
+                    Gesamtpreis: {{ number_format($receipt_product["TotalPrice"], 2) }}                                       
+                </li>
             @empty
                 <p>Kein Produkt</p>
             @endforelse

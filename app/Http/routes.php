@@ -112,7 +112,7 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         
         if ($request->input('user') && $request->input('password')) {
             $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                        
-            
+             
             if ($user != null && Hash::check($request->input('password'), $user->Password)) {
                 $user->APIToken = APIToken::generateToken(255);
 
@@ -158,19 +158,17 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
         return view('createproduct');
     });
     
-    $app->post('/receipt/{id}/createproduct', function(Request $request) {
-        
+    $app->post('/receipt/{id}/createproduct', function(Request $request, $id) {                        
         $this->validate($request, [
-            'productName' => 'required',
+            'name' => 'required',
             'totalPrice' => 'required|numeric|min:0',
-            'quantity' => 'required|numeric|min:1',
-            'receiptID' => 'required|exists:receipt,ID'
+            'quantity' => 'required|numeric|min:1'            
         ]);
         
-        \DB::transaction(function () use ($request) {
-            $receipt = \ListIt\Receipt::findOrFail($request->input('receiptID'));                                
+        \DB::transaction(function () use ($request, $id) {
+            $receipt = \ListIt\Receipt::findOrFail($id);                                
 
-            $product = \ListIt\Product::firstOrCreate(['Name'=>$request->input('productName')]);
+            $product = \ListIt\Product::firstOrCreate(['Name'=>$request->input('name')]);
 
             $receipt_product = new \ListIt\Receipt_Product();
             $receipt_product->receiptID = $receipt->ID;
@@ -180,7 +178,7 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
             $receipt_product->save();
         });
         
-        return redirect('receipts');
+        return redirect('/receipt/'. $id);
     });
     
     $app->get('/createreceipt', function() {
