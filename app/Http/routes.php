@@ -161,9 +161,9 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     });
     
     $app->post('/createreceipt', function(Request $request) {
-        this->validate($request, [
+        $this->validate($request, [
             'country' => 'string'
-        ])
+        ]);
     });
     
     $app->post('/login', function(Request $request) {
