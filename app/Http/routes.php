@@ -96,6 +96,10 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         return view('login', ['name' => 'alpha', 'password' => 'beta']);
     });
     
+    $app->get('/register', function() {
+        return view('register');
+    });
+    
     $app->get('/home', function() {
         return view('index');
     });

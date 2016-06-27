@@ -3,20 +3,18 @@
 @section('title', 'Welcome')
 
 @section('content')
+    @unless (Auth::check())
+        You are not signed in.
+    @endunless
 
-@unless (Auth::check())
-    You are not signed in.
-@endunless
+    <a href="">Quittung hinzufügen</a>
 
-<a>Quittung hinzufügen</a>
-
-Quittungen
-@forelse ($receipts as $receipt)
-    
-    <a href="/receipt/{{ $receipt["ID"] }}" >{{ $receipt["Datum"] }}</a>
-@empty
-    <p>Keine Quittungen</p>
-@endforelse
-
-
+    <h1>Quittungen</h1>
+    <div class="receiptBlock">
+        @forelse ($receipts as $receipt)
+            <a href="/receipt/{{ $receipt["ID"] }}" >{{ $receipt["Datum"] }}</a>
+        @empty
+            <p>Keine Quittungen</p>
+        @endforelse
+    </div>
 @endsection

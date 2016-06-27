@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="/css/style.css" />                     
-        <title>@yield('title') - ListIt</title>
-    </head>
+@extends('layouts.base.master')
+
+@section('basestructure')
     <body id="loggedOut">
-        
-        ListIt
-        <img src="/img/logoV2_0.png" />
-        
-        <div id="">
-            <a href="/login">Login</a>
-            <a href="/register">Registrieren</a>
-        </div>
-        
-        
+        <a href='/login'>Login</a>
+        <a href='/register'>Registerireireirier</a>
         @yield('content')
-        
     </body>
-</html>
+@endsection
