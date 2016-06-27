@@ -108,7 +108,7 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         $this->validate($request, [
             'user' => 'required',
             'password' => 'required'
-        ]);        
+        ]);                        
         
         if ($request->input('user') && $request->input('password')) {
             $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                        
@@ -140,6 +140,8 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         $user->Password = Hash::make($request->input('password'));
         
         $user->save();
+        
+        return redirect('login');
     });
     
     
@@ -152,8 +154,33 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     
     $app->get('/receipt/{id}', 'ReceiptController@getOne');
     
-    $app->get('/createproduct', function() {
+    $app->get('/receipt/{id}/createproduct', function() {                        
         return view('createproduct');
+    });
+    
+    $app->post('/receipt/{id}/createproduct', function(Request $request) {
+        
+        $this->validate($request, [
+            'productName' => 'required',
+            'totalPrice' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|min:1',
+            'receiptID' => 'required|exists:receipt,ID'
+        ]);
+        
+        \DB::transaction(function () use ($request) {
+            $receipt = \ListIt\Receipt::findOrFail($request->input('receiptID'));                                
+
+            $product = \ListIt\Product::firstOrCreate(['Name'=>$request->input('productName')]);
+
+            $receipt_product = new \ListIt\Receipt_Product();
+            $receipt_product->receiptID = $receipt->ID;
+            $receipt_product->productID = $product->ID;
+            $receipt_product->TotalPrice = $request->input('totalPrice');
+            $receipt_product->Quantity = $request->input('quantity');
+            $receipt_product->save();
+        });
+        
+        return redirect('receipts');
     });
     
     $app->get('/createreceipt', function() {
@@ -162,10 +189,15 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     
     $app->post('/createreceipt', function(Request $request) {
         $this->validate($request, [
-            'country' => 'string'
+            'country' => 'string',
+            'streetNr' => 'number'
         ]);
+        
+        
+        
     });
     
+    /* 
     $app->post('/login', function(Request $request) {
         $this->validate($request, [
             'user' => 'required',
@@ -185,7 +217,7 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
         }
         return redirect('receipts');
         //$request->session()->put('key', 'value');               
-    });
+    }); */
     
     
 });

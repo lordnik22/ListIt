@@ -3,9 +3,6 @@
 @section('title', 'Welcome')
 
 @section('content')
-    @unless (Auth::check())
-        You are not signed in.
-    @endunless
 
     <a href="/createreceipt">Quittung hinzufügen</a>
 

@@ -4,7 +4,7 @@
 
 @section('content')
 @parent
-<form action='/createproduct' method='POST'>    
+<form action='#' method='POST'>        
     <label>
         Name:
         <input type="text" name="name" />
