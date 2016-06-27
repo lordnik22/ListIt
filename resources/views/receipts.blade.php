@@ -7,7 +7,11 @@
         You are not signed in.
     @endunless
 
-    <a href="">Quittung hinzufügen</a>
+    <a href="/createreceipt">Quittung hinzufügen</a>
+
+    @unless (Auth::check())
+        You are not signed in.
+    @endunless
 
     <h1>Quittungen</h1>
     <div class="receiptBlock">

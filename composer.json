@@ -8,7 +8,8 @@
         }
     ],
     "require": {
-        "laravel/lumen": "5.2.*"        
+        "laravel/lumen": "5.2.*",
+        "tck/odbc": "dev-master"        
     },
     "require-dev": {
         "phpunit/phpunit": "^5.3"

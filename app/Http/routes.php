@@ -151,6 +151,43 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     $app->get('/receipts', 'ReceiptController@get');
     
     $app->get('/receipt/{id}', 'ReceiptController@getOne');
+    
+    $app->get('/createproduct', function() {
+        return view('createproduct');
+    });
+    
+    $app->get('/createreceipt', function() {
+        return view('createreceipt');
+    });
+    
+    $app->post('/createreceipt', function(Request $request) {
+        this->validate($request, [
+            'country' => 'string'
+        ])
+    });
+    
+    $app->post('/login', function(Request $request) {
+        $this->validate($request, [
+            'user' => 'required',
+            'password' => 'required'
+        ]);        
+        
+        if ($request->input('user') && $request->input('password')) {
+            $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                        
+            
+            if ($user != null && Hash::check($request->input('password'), $user->Password)) {
+                $user->APIToken = APIToken::generateToken(255);
+
+                $user->save();
+                
+                $request->session()->put('api-token', $user->APIToken);                             
+            }                                                                      
+        }
+        return redirect('receipts');
+        //$request->session()->put('key', 'value');               
+    });
+    
+    
 });
 
 

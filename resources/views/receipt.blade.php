@@ -10,7 +10,7 @@
      <a href="/receipts">Quittungen</a>
     {{ $receipt["ID"] }}
     
-    <button>Produkt hinzufügen</button>
+    <a href="/createproduct">Produkt hinzufügen</a>
     <div class="receiptBlock">
         <ul>
             
@@ -21,5 +21,4 @@
             @endforelse
         </ul>
     </div>
-
 @endsection
