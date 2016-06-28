@@ -191,7 +191,43 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
             'streetNr' => 'number'
         ]);
         
+        $receiptID = \DB::transaction(function () use ($request) {
+                        
+            $country = new \ListIt\Country();          
+            if(!empty($request->input('country'))) {
+                $country = \ListIt\Country::firstOrCreate(['Name'=>$request->input('company')]);
+            }
+                                                
+            $region = \ListIt\Region::firstOrCreate(['Name'=>$request->input('region'), 'CountryID'=>$country->ID]);            
+            
+            $street = new \ListIt\Country();
+            if(!empty($request->input('street'))) {
+                $street = \ListIt\Street::firstOrCreate(['Name'=>$request->input('street')]);            
+            }                
+            
+            $shoplocation = \ListIt\Shoplocation::firstOrCreate(['StreetNr'=>$request->input('streetNr'), 'StreetID'=>$street->ID, 'RegionID'=>$region->ID]);
+            
+            $company = new \ListIt\Country();          
+            if(!empty($request->input('company'))) {
+                $company = \ListIt\Company::firstOrCreate(['Name'=>$request->input('company')]);
+            }
+            
+            $company_shoplocation = \ListIt\Company_Shoplocation::firstOrCreate(['CompanyID'=>$company->ID, 'ShoplocationID'=>$shoplocation->ID]);
+                        
+            $user = \ListIt\User::where('APIToken', $request->session()->get('api-token'))->firstOrFail();
+            
+            $receipt = new \ListIt\Receipt();
+            $receipt->Datum = date('m-d-Y H:i:s');
+            $receipt->UserID = $user->ID;
+            $receipt->CompanyShoplocationID = $company_shoplocation->ID;
+            $receipt->save();
+            
+            var_dump($receipt->ID);
+            
+            return $receipt->ID;                        
+        });
         
+        return redirect('/receipt/'. $receiptID);
         
     });
     
