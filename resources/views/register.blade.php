@@ -1,16 +1,21 @@
-@extends('layouts.loggedOut')
-
-@section('title', 'Login')
-
-@section('content')
-    @parent
+<div id="registerBlock">
     <form method="POST" action="/login">
-        Benutzername:
-        <input type="text" name="user" value="" />
-        Passwort:
-        <input type="password" name="password" value=""/>
-        Email:
-        <input type="password" name="password" value=""/>
-        <input type="submit"/>
+        <fieldset>
+            <legend>Registration</legend>
+            <hr/>
+            <label>
+                <span>Benutzername</span>
+                <input type="text" name="user" value="" />
+            </label>
+            <label>
+                <span>Passwort</span>
+                <input type="password" name="password" value=""/>
+            </label>
+            <label>
+                <span>Email</span>
+                <input type="password" name="password" value=""/>
+            </label>
+            <input type="submit" value="Registrieren"/>
+        </fieldset>
     </form>
-@endsection
+</div>
