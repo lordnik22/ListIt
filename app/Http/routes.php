@@ -100,10 +100,17 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         return view('register');
     });
     
-    $app->get('/home', function() {
-        return view('index');
+    
+    //Startseite
+    $app->get('/index', function() {
+        return view('index', ['name' => 'alpha', 'password' => 'beta']);
     });
-
+    $app->get('/home', function() {
+        return view('index', ['name' => 'alpha', 'password' => 'beta']);
+    });
+    //---------
+    
+    
     $app->post('/login', function(Request $request) {
         $this->validate($request, [
             'user' => 'required',

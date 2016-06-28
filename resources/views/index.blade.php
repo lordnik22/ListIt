@@ -1,7 +1,10 @@
 @extends('layouts.loggedOut')
 
-@section('title', 'Welcome')
+@section('title', 'Login')
 
 @section('content')
-    @parent  
+    <div id="mainBlock">
+        @include('login')
+        @include('register')
+    </div>
 @endsection
