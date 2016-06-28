@@ -1,3 +1,5 @@
+@import "color";
+
 /*---GENERAL---*/
 *{
     float: left;
@@ -24,7 +26,9 @@ hr{
     border: none;
     border-top: solid 1px;
 }
-
+a, a:visited{
+    color: black;
+}
 #mainBlock, #registerBlock, hr, form legend{
     border-color: #1d768c !important;
 }
@@ -109,8 +113,7 @@ form label span{
 .receiptBlock{
     width: 20%;
     display: block;
-    padding: 0;
-    margin: auto;
+    margin: 5px;
     background-color: #1d768c;
 }
 .receiptBlock:hover{

@@ -8,7 +8,7 @@
             <div class="boxlarge"></div>
         </div>
         <div class="navbar">
-            <a href="/home">Home</a>
+            <a href="/receipts">Quittungen</a>
             <a href="/login">Logout</a>
         </div>
         <div class="navboxes">
