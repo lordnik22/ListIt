@@ -25,7 +25,7 @@ class ConversionService {
             'Quantity' => $receipt_product->Quantity,
             'TotalPrice' => $receipt_product->TotalPrice,
             'Product' => $receipt_product->product
-        ];
+        ]; 
     }
 
     public function getJsonCompany($company) {
@@ -36,13 +36,18 @@ class ConversionService {
     }
 
     public function getJsonShopLocation($shoplocation) {
+        $country = $this->getProperyOfNullObject($shoplocation->region, 'country');
         return [
             'ID' => $shoplocation->ID,
             'StreetNr' => $shoplocation->StreetNr,                        
-            'Street' => $shoplocation->street->Name,
-            'Region' => $shoplocation->region->Name,
-            'Country' => $shoplocation->region->country->Name
+            'Street' => $this->getProperyOfNullObject($shoplocation->street, 'Name'),
+            'Region' => $this->getProperyOfNullObject($shoplocation->region, 'Name'),
+            'Country' => $this->getProperyOfNullObject($country, 'Name')
         ];
+    }
+    
+    private function getProperyOfNullObject($obj, $property) {
+        return $obj === null ? null : $obj->$property;
     }
 
 }
