@@ -38,7 +38,7 @@ class ConversionService {
     public function getJsonShopLocation($shoplocation) {
         return [
             'ID' => $shoplocation->ID,
-            'StreetNr' => $shoplocation->StreetNr,
+            'StreetNr' => $shoplocation->StreetNr,                        
             'Street' => $shoplocation->street->Name,
             'Region' => $shoplocation->region->Name,
             'Country' => $shoplocation->region->country->Name
