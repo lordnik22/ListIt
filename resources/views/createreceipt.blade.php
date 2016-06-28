@@ -5,15 +5,27 @@
 @section('content')
 @parent
 <form method="POST" action="/createreceipt">
-    Firma:
-    <input type="text" name="company" /></br>
-    
-    Standort:
-    Land: <input type="text" name="country"/>
-    Region: <input type="text" name="region" />    
-    Strasse: <input type="text" name="street" />
-    StrassenNr <input type="text" name="streetNr" />   
-      
+    <label>
+        <span>Firma</span>
+        <input type="text" name="company" />
+    </label>
+    <span>Standort</span>
+    <label>
+        <span>Region</span>
+        <<input type="text" name="region" /> 
+    </label>
+    <label>
+        <span>Land</span>
+        <input type="text" name="country"/>
+    </label>    
+    <label>
+        <span>Strasse</span>
+        <input type="text" name="street" />
+    </label>
+    <label>
+        <span>StrassenNr</span>
+        <input type="text" name="streetNr" />
+    </label>      
     <input type="submit" value="Speichern" />
 </form>
 @endsection

@@ -11,6 +11,7 @@ html, body{
 body{
     padding: 0;
     margin: 0;
+    background-color: chocolate;
 }
 #loggedOut {
     background-image: url("/img/background.jpg");
