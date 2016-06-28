@@ -2,6 +2,7 @@
     <form method="POST" action="/login">
         <fieldset>
             <legend>Registration</legend>
+            <hr/>
             <label>
                 <span>Benutzername</span>
                 <input type="text" name="user" value="" />
@@ -14,7 +15,7 @@
                 <span>Email</span>
                 <input type="password" name="password" value=""/>
             </label>
-            <input type="submit"/>
+            <input type="submit" value="Registrieren"/>
         </fieldset>
     </form>
 </div>

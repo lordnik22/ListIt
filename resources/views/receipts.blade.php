@@ -11,18 +11,19 @@
     @endunless
 
     <h1>Quittungen</h1>
-    <div class="receiptBlock">
+    <div id="receiptsBlock">
         @forelse ($receipts as $receipt)
-            <a href="/receipt/{{ $receipt["ID"] }}" >
-                Datum: {{ $receipt["Datum"] }}
-                Firma: {{ $receipt["Company"]["Name"] }}
-                Region: {{ $receipt["ShopLocation"]["Region"] }} 
-                Land: {{ $receipt["ShopLocation"]["Country"] }}
-                Strasse: {{ $receipt["ShopLocation"]["Street"] }}
-                StrassenNr: {{ $receipt["ShopLocation"]["StreetNr"] }}
-                Gesamtpreis: {{ number_format($receipt["TotalPrice"], 2) }}
-                
-            </a>
+            <div class="receiptBlock">
+                <a href="/receipt/{{ $receipt["ID"] }}" >
+                    <span>Datum: {{ $receipt["Datum"] }}</span>
+                    <span>Firma: {{ $receipt["Company"]["Name"] }}</span>
+                    <span>Region: {{ $receipt["ShopLocation"]["Region"] }}</span>
+                    <span>Land: {{ $receipt["ShopLocation"]["Country"] }}</span>
+                    <span>Strasse: {{ $receipt["ShopLocation"]["Street"] }}</span>
+                    <span>StrassenNr: {{ $receipt["ShopLocation"]["StreetNr"] }}</span>
+                    <span>Gesamtpreis: {{ number_format($receipt["TotalPrice"], 2) }}</span>
+                </a>
+            </div>                
         
         @empty
             <p>Keine Quittungen</p>
