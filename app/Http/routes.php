@@ -246,7 +246,7 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
         return redirect('/receipts');
     });
     
-    $app->get('/receipt/{id}/receiptproduct/{receiptproductid}/deleteproduct', function($id, $receiptproductid)  {                
+    $app->delete('/receipt/{id}/receiptproduct/{receiptproductid}', function($id, $receiptproductid)  {                
         \ListIt\Receipt_Product::findOrFail($receiptproductid)->delete();                     
         
         return redirect('/receipt/'. $id);

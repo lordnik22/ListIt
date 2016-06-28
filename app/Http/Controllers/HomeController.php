@@ -12,6 +12,6 @@ use ListIt\Services\ConversionService;
 class HomeController extends Controller {
     
     public function index() {
-        return view('index');
+        return view('index', ['name' => 'alpha', 'password' => 'beta']);
     }
 }

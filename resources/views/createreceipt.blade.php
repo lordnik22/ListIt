@@ -3,8 +3,13 @@
 @section('title', 'Quittung erstellen')
 
 @section('content')
-<div id="addReceipt">
-    <form method="POST" action="/createreceipt">
+<div id="addReceipt">        
+        @if(!empty($receipt))
+            <form method="POST" action="/createreceipt{{ $receipt["ID"] }}" >
+        @else
+            <form method="POST" action="/createreceipt" >        
+        @endif
+          
         <fieldset>
             <legend>Quittung erstellen</legend>
             <label>
