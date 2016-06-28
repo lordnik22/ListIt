@@ -7,3 +7,5 @@ plugins/
 .env
 vendor/
 nbproject/private
+public/css
+public/js

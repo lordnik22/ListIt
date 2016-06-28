@@ -13,8 +13,9 @@ html, body{
 body{
     padding: 0;
     margin: 0;
-    background-color: chocolate;
+    background-color: #29a4c3;
 }
+
 #loggedOut {
     background-image: url("/img/background.jpg");
     background-attachment: fixed;
@@ -61,6 +62,11 @@ a, a:visited{
 }
 /*---INDEX_END---*/
 
+/*---AddReceipt---*/
+#addReceipt{
+    background-color: #1d768c;
+}
+/*---AddReceipt_ENT---*/
 /*---NAV---*/
 nav {
     width: 100%;
@@ -81,6 +87,10 @@ nav .navbar a{
 /*---NAV_END---*/
 
 /*---FORM---*/
+form{
+    width: 100%;
+    height: 100%;
+}
 form fieldset{
     border: none;
 }
@@ -90,6 +100,7 @@ form legend{
     color: #1d768c;
 }
 form label{
+    width: 100%;
     margin: 2px;
 }
 form input, form label span{
