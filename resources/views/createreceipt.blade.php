@@ -9,6 +9,10 @@
         <span>Firma</span>
         <input type="text" name="company" />
     </label>
+    <label>
+        <span>Datum</span>
+        <input type="datetime-local" name="datum" />
+    </label>
     <span>Standort</span>
     <label>
         <span>Region</span>

@@ -12,7 +12,7 @@ class ConversionService {
     public function getJsonReceipt($receipt) {        
         return [
             'ID' => $receipt->ID,
-            'Datum' => $receipt->Datum,
+            'Datum' => $this->getProperyOfNullObject($receipt, 'Datum'),
             'Receipt_Products' => $receipt->receipt_products->map([$this, 'getJsonReceiptProduct']),
             'Company' => $this->getJsonCompany($receipt->company_shoplocation->company),
             'ShopLocation' => $this->getJsonShopLocation($receipt->company_shoplocation->shoplocation),
@@ -30,8 +30,8 @@ class ConversionService {
 
     public function getJsonCompany($company) {
         return [
-            'ID' => $company->ID,
-            'Name' => $company->Name
+            'ID' => $this->getProperyOfNullObject($company, 'ID'),
+            'Name' => $this->getProperyOfNullObject($company, 'Name')
         ];
     }
 

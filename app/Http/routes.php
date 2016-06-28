@@ -195,7 +195,8 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     $app->post('/createreceipt', function(Request $request) {
         $this->validate($request, [
             'country' => 'string',
-            'streetNr' => 'numeric'
+            'streetNr' => 'numeric',
+            'datum' => 'date'
         ]);
         
         $receiptID = \DB::transaction(function () use ($request) {
@@ -224,7 +225,8 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
             $user = \ListIt\User::where('APIToken', $request->session()->get('api-token'))->firstOrFail();
             
             $receipt = new \ListIt\Receipt();
-            $receipt->Datum = date('m-d-Y H:i:s');
+            $date = $request->input('datum');
+            empty($date) ? $receipt->Datum = null : $receipt->Datum = $date;
             $receipt->UserID = $user->ID;
             $receipt->CompanyShoplocationID = $company_shoplocation->ID;
             $receipt->save();
