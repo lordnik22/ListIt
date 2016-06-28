@@ -12,6 +12,7 @@ class ReceiptController extends Controller {
         $receipts = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')->get()->map([$conv, 'getJsonReceipt']);
         
         return view('receipts', ['receipts' => $receipts]);
+        //return var_dump($receipts[0]);
     }
     
     public function getOne(ConversionService $conv, $id) {        

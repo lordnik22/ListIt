@@ -16,6 +16,7 @@ class ConversionService {
             'Receipt_Products' => $receipt->receipt_products->map([$this, 'getJsonReceiptProduct']),
             'Company' => $this->getJsonCompany($receipt->company_shoplocation->company),
             'ShopLocation' => $this->getJsonShopLocation($receipt->company_shoplocation->shoplocation),
+            'TotalPrice' => $receipt->receipt_products->sum('TotalPrice')
         ];
     }
 
@@ -37,6 +38,8 @@ class ConversionService {
     public function getJsonShopLocation($shoplocation) {
         return [
             'ID' => $shoplocation->ID,
+            'StreetNr' => $shoplocation->StreetNr,
+            'Street' => $shoplocation->street->Name,
             'Region' => $shoplocation->region->Name,
             'Country' => $shoplocation->region->country->Name
         ];
