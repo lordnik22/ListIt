@@ -188,7 +188,7 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     $app->post('/createreceipt', function(Request $request) {
         $this->validate($request, [
             'country' => 'string',
-            'streetNr' => 'number'
+            'streetNr' => 'numeric'
         ]);
         
         $receiptID = \DB::transaction(function () use ($request) {
