@@ -22,6 +22,7 @@
                     <span>Strasse: {{ $receipt["ShopLocation"]["Street"] }}</span>
                     <span>StrassenNr: {{ $receipt["ShopLocation"]["StreetNr"] }}</span>
                     <span>Gesamtpreis: {{ number_format($receipt["TotalPrice"], 2) }}</span>
+                    <a href="/receipt/{{ $receipt["ID"] }}/deletereceipt">Löschen</a>
                 </a>
             </div>                
         

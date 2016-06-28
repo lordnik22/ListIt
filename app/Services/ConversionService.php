@@ -22,6 +22,7 @@ class ConversionService {
 
     public function getJsonReceiptProduct($receipt_product) {
         return [
+            'ID' => $receipt_product->ID,
             'Quantity' => $receipt_product->Quantity,
             'TotalPrice' => $receipt_product->TotalPrice,
             'Product' => $receipt_product->product

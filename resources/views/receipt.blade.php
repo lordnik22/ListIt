@@ -17,7 +17,8 @@
             @forelse ($receipt["Receipt_Products"] as $receipt_product)                
                 <li>Produkt: {{ $receipt_product["Product"]['Name'] }}
                     Gesamtpreis: {{ number_format($receipt_product["TotalPrice"], 2) }}                                       
-                    Anzahl: {{ $receipt_product["Quantity"] }}                                       
+                    Anzahl: {{ $receipt_product["Quantity"] }} 
+                    <a href="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}/deleteproduct" >Löschen</a>
                 </li>
             @empty
                 <p>Kein Produkt</p>

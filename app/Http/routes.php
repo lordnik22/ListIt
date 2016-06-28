@@ -240,6 +240,18 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
         
     });
     
+    $app->get('/receipt/{id}/deletereceipt', function($id)  {                               
+        \ListIt\Receipt::findOrFail($id)->delete();                             
+        
+        return redirect('/receipts');
+    });
+    
+    $app->get('/receipt/{id}/receiptproduct/{receiptproductid}/deleteproduct', function($id, $receiptproductid)  {                
+        \ListIt\Receipt_Product::findOrFail($receiptproductid)->delete();                     
+        
+        return redirect('/receipt/'. $id);
+    });
+    
     /* 
     $app->post('/login', function(Request $request) {
         $this->validate($request, [
