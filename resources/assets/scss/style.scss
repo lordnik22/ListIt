@@ -8,7 +8,7 @@ html, body {
 body{
     padding: 0;
     margin: 0;
-    background-color: #11CCFF;
+    background-color: white;
 }
 
 #loggedOut {
@@ -27,7 +27,9 @@ a, a:visited{
 }
 a:hover{
     color: black;
-    background-color: #29a4c3 !important;
+}
+h1{
+    float: left
 }
 #mainBlock, #registerBlock, hr, form legend, .receiptBlock{
     border-color: #1d768c !important;
@@ -80,28 +82,45 @@ a:hover{
 /*---AddReceipt_ENT---*/
 /*---NAV---*/
 nav {
+    .navbar{
+        a:hover{
+            border: 1px solid grey;
+            border-radius: 5px;
+            font-weight: 900;
+            background-color: #29a4c3;
+        }
+    }
+}
+nav {
     
     width: 100%;
         
     float:left;
     
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    
+    padding: 5px 0;
+    margin: 5px 0;
+    
+    background-color: #29a4c3;
+    
+    min-height: 40px;
+    
     .navbar{
         
-        width: 75%;
-        height: 100%;
+        text-align: center;
         
-        margin-left: 12.5%;
         padding: 5px;
         
-        background-color: #1d768c;
-        border-radius: 15px;
-        
-        float:left;
-        
-        
         a{
+            min-height: 40px;
+                       
             text-align: center;
+            text-decoration: none;
             font-size: 1.3em;
+            
+            padding: 5px;
         }
     }
 }
@@ -150,9 +169,9 @@ form{
 /*---RECEIPTS---*/
 
 .receiptBlock:hover{
-    background-color: red !important; 
+    background-color: #29a4c3 !important; 
     a{
-        background-color: red !important;    
+        background-color: #29a4c3 !important;    
     }
 }
 
@@ -160,7 +179,7 @@ form{
 
     margin: 5px;
     
-    background-color: rgba(255, 255, 255, 0.24);
+    background-color: rgba(41, 164, 195, 0.24);
     
     width: 25%;
     max-height: 205px;

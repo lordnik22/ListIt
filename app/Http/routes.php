@@ -89,7 +89,8 @@ $app->group(['middleware' => ['auth', 'origin'], 'prefix' => '/api', 'namespace'
 });
 
 $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'], function () use ($app) {
-
+    
+    
     $app->get('/', 'HomeController@index');
     
     $app->get('/login', function() {
@@ -100,8 +101,7 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         return view('register');
     });
     
-    
-    //Startseite
+        //Startseite
     $app->get('/index', function() {
         return view('index', ['name' => 'alpha', 'password' => 'beta']);
     });
@@ -110,7 +110,7 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
     });
     //---------
     
-    
+           
     $app->post('/login', function(Request $request) {
         $this->validate($request, [
             'user' => 'required',
@@ -118,10 +118,10 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         ]);                        
         
         
-        
+
         if ($request->input('user') && $request->input('password')) {
-            
             $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                                     
+        
             if ($user != null && Hash::check($request->input('password'), $user->Password)) {
                 $user->APIToken = APIToken::generateToken(255);
 

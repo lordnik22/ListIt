@@ -7,8 +7,7 @@
     @unless (Auth::check())
         You are not signed in.
     @endunless
-
-    <h1>Quittungen</h1>
+    <a href="/createreceipt">Hinzufügen</a>
     <div id="receiptsBlock">
         @forelse ($receipts as $receipt)
             <div class="receiptBlock">
