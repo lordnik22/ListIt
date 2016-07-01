@@ -9,6 +9,8 @@
         </div>
         <div class="navbar">
             <a href="/receipts">Quittungen</a>
+            <a href="/receipts">Statistiken</a>
+            <a href="/createreceipt">Quittung hinzufügen</a>
             <a href="/index">Logout</a>
         </div>
         <div class="navboxes">

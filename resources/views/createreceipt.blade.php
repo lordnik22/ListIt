@@ -12,6 +12,10 @@
           
         <fieldset>
             <legend>Quittung erstellen</legend>
+             <label>
+                <span>Datum</span>
+                <input type="datetime" name="datum" />
+            </label> 
             <label>
                 <span>Firma</span>
                 <input type="text" name="company" />

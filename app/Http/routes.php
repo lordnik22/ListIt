@@ -117,9 +117,11 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
             'password' => 'required'
         ]);                        
         
+        
+        
         if ($request->input('user') && $request->input('password')) {
-            $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                        
-             
+            
+            $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                                     
             if ($user != null && Hash::check($request->input('password'), $user->Password)) {
                 $user->APIToken = APIToken::generateToken(255);
 

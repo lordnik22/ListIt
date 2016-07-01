@@ -1,10 +1,5 @@
-@import "color";
-
 /*---GENERAL---*/
-*{
-    float: left;
-}
-html, body{
+html, body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     width: 100%;
     min-height: 100% !important;
@@ -13,7 +8,7 @@ html, body{
 body{
     padding: 0;
     margin: 0;
-    background-color: #29a4c3;
+    background-color: #11CCFF;
 }
 
 #loggedOut {
@@ -30,36 +25,52 @@ hr{
 a, a:visited{
     color: black;
 }
-#mainBlock, #registerBlock, hr, form legend{
+a:hover{
+    color: black;
+    background-color: #29a4c3 !important;
+}
+#mainBlock, #registerBlock, hr, form legend, .receiptBlock{
     border-color: #1d768c !important;
 }
 /*---GENERAL_END---*/
 
 /*---INDEX---*/
-#mainBlock{
+#mainBlock {
     width: 50%;
     
     position: relative;
     top: 25%;
     left: 25%;
-    
+    float:left;
     border: 2px solid;
     border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.24)
+    background-color: rgba(255, 255, 255, 0.24);
+    
+    div{
+        width: calc(50% - 1px);
+        height: 100%;
+    }
+    
+    #loginBlock {
+        
+        float:left;
+        
+        label{
+            width: 100%;
+        }
+    }
+    #registerBlock{
+        
+        float:left;
+        
+        border-left: 1px solid;
+        
+        label{
+            width: 100%;
+        }
+    }
 }
-#mainBlock div{
-    width: calc(50% - 1px);
-    height: 100%;
-}
-#loginBlock label{
-    width: 100%;
-}
-#registerBlock{
-    border-left: 1px solid;
-}
-#registerBlock label{
-    width: 100%;
-}
+
 /*---INDEX_END---*/
 
 /*---AddReceipt---*/
@@ -69,20 +80,30 @@ a, a:visited{
 /*---AddReceipt_ENT---*/
 /*---NAV---*/
 nav {
+    
     width: 100%;
-}
-nav navboxes{
-    width: 25%;
-    height: 15px;
-    background-color: red;
-}
-nav .navbar{
-    width: 50%;
-    display: block;
-}
-nav .navbar a{
-    margin: 0 1px;
-    background-color: #1d768c;
+        
+    float:left;
+    
+    .navbar{
+        
+        width: 75%;
+        height: 100%;
+        
+        margin-left: 12.5%;
+        padding: 5px;
+        
+        background-color: #1d768c;
+        border-radius: 15px;
+        
+        float:left;
+        
+        
+        a{
+            text-align: center;
+            font-size: 1.3em;
+        }
+    }
 }
 /*---NAV_END---*/
 
@@ -90,51 +111,79 @@ nav .navbar a{
 form{
     width: 100%;
     height: 100%;
-}
-form fieldset{
-    border: none;
-}
-form legend{
-    font-size: 1.5em;
-    font-weight: 900;
-    color: #1d768c;
-}
-form label{
-    width: 100%;
-    margin: 2px;
-}
-form input, form label span{
-    padding: 5px;
-}
-form input{
-    border: none;
-}
-form input{
-    min-width: 85px;
-}
-form label span{
-    width: 35%;
-    font-size: 0.9em;
-    font-weight: 600;
+    
+    fieldset{
+        border: none;
+        
+        legend{
+            font-size: 1.5em;
+            font-weight: 900;
+            color: #1d768c;
+        }
+        
+        label{
+            width: 100%;
+            margin: 2px;
+            
+            float:left;
+            
+            span, input{
+                padding: 5px;
+                float:left;
+            }
+            
+            span{
+                width: 35%;
+                font-size: 0.9em;
+                font-weight: 600;
+            }
+            
+            input {
+                border: none;
+                min-width: 85px;
+            }
+        }
+    }
 }
 /*---FORM_END---*/
 
 /*---RECEIPTS---*/
 
-.receiptBlock{
-    width: 20%;
-    display: block;
-    margin: 5px;
-    background-color: #1d768c;
-}
 .receiptBlock:hover{
-    background-color: #29a4c3;
+    background-color: red !important; 
+    a{
+        background-color: red !important;    
+    }
 }
-.receiptBlock span{
-    width: 100%;
+
+.receiptBlock{
+
+    margin: 5px;
+    
+    background-color: rgba(255, 255, 255, 0.24);
+    
+    width: 25%;
+    max-height: 205px;
+    min-width: 190px;
+    max-width: 200px;
+    
+    overflow: auto;
+    float: left;
+    
+    border: 2px solid red;
+    
+    a{
+        width: 100%;
+
+        margin-top: 5px;
+
+        display: block;
+        float:left;
+
+        span{
+            float:left;
+        }
+    }
 }
+
 /*---RECEIPTS_END---*/
-#nav {
-    background-color: white;
-    border: solid 2px red;
-}
