@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use ListIt\APIToken;
 use \ListIt\Services\ConversionService;
+use Illuminate\Http\RedirectResponse;
 
 /*
   |--------------------------------------------------------------------------
@@ -116,9 +117,7 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
             'user' => 'required',
             'password' => 'required'
         ]);                        
-        
-        
-
+        echo "trying to log in.";
         if ($request->input('user') && $request->input('password')) {
             $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                                     
         
@@ -127,11 +126,12 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
 
                 $user->save();
                 
-                $request->session()->put('api-token', $user->APIToken);                             
+                $request->session()->put('api-token', $user->APIToken);
+                echo "Logged in.";
             }                                                                      
         }
-        return redirect('receipts');
-        //$request->session()->put('key', 'value');               
+        
+        return RedirectResponse::create('/receipts');
     });
 
     

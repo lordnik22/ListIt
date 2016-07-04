@@ -1,5 +1,5 @@
 <div id="registerBlock">
-    <form method="POST" action="/login">
+    <form method="POST" action="/users">
         <fieldset>
             <legend>Registration</legend>
             <hr/>

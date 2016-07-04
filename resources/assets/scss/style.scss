@@ -12,7 +12,7 @@ body{
 }
 
 #loggedOut {
-    background-image: url("/img/background.jpg");
+    background-image: url("/img/background.min.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100% 100%;    
@@ -84,7 +84,6 @@ h1{
 nav {
     .navbar{
         a:hover{
-            border: 1px solid grey;
             border-radius: 5px;
             font-weight: 900;
             background-color: #29a4c3;
@@ -182,6 +181,8 @@ form{
     background-color: rgba(41, 164, 195, 0.24);
     
     width: 25%;
+    
+    min-height: 190px;
     max-height: 205px;
     min-width: 190px;
     max-width: 200px;
@@ -190,6 +191,8 @@ form{
     float: left;
     
     border: 2px solid red;
+    
+    text-align: center;
     
     a{
         width: 100%;
@@ -202,7 +205,22 @@ form{
         span{
             float:left;
         }
+        
     }
+    
+    img{
+        width: 100%;
+        height: 100%;
+    }
+    
 }
 
 /*---RECEIPTS_END---*/
+
+/*---PRODUCTS---*/
+
+.productBlock{
+    
+}
+
+/*---PRODUCTS_END*/

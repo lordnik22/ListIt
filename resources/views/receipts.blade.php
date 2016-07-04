@@ -1,18 +1,23 @@
 @extends('layouts.loggedIn')
 
-@section('title', 'Welcome')
+@section('title', 'Quittungen')
 
 @section('content')
 
     @unless (Auth::check())
         You are not signed in.
     @endunless
-    <a href="/createreceipt">Hinzufügen</a>
     <div id="receiptsBlock">
+        <a href="/createreceipt">
+            <div class="receiptBlock">
+                <img src="img/walros1.min.png" alt="Quittung hinzufügen"/>
+                Hinzufügen
+            </div>
+        </a>
         @forelse ($receipts as $receipt)
             <div class="receiptBlock">
                 <a href="/receipt/{{ $receipt["ID"] }}" >
-                    <span>Datum: {{ $receipt["Datum"] }}</span>
+                    <span>{{ $receipt["Datum"] }}</span>
                     <span>Firma: {{ $receipt["Company"]["Name"] }}</span>
                     <span>Region: {{ $receipt["ShopLocation"]["Region"] }}</span>
                     <span>Land: {{ $receipt["ShopLocation"]["Country"] }}</span>
