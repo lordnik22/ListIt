@@ -4,13 +4,10 @@
 
 @section('content')
 
-    <a href="/createreceipt">Quittung hinzufügen</a>
-
     @unless (Auth::check())
         You are not signed in.
     @endunless
-
-    <h1>Quittungen</h1>
+    <a href="/createreceipt">Hinzufügen</a>
     <div id="receiptsBlock">
         @forelse ($receipts as $receipt)
             <div class="receiptBlock">
@@ -22,8 +19,8 @@
                     <span>Strasse: {{ $receipt["ShopLocation"]["Street"] }}</span>
                     <span>StrassenNr: {{ $receipt["ShopLocation"]["StreetNr"] }}</span>
                     <span>Gesamtpreis: {{ number_format($receipt["TotalPrice"], 2) }}</span>
-                    <a href="/receipt/{{ $receipt["ID"] }}/deletereceipt">Löschen</a>
                 </a>
+                <a href="/receipt/{{ $receipt["ID"] }}/deletereceipt">Löschen</a>
             </div>                
         
         @empty

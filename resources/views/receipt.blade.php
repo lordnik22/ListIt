@@ -7,9 +7,8 @@
     @unless (Auth::check())
         You are not signed in.
     @endunless
-     <a href="/receipts">Quittungen</a>
-    {{ $receipt["ID"] }}
     
+    {{ $receipt["ID"] }}
     <a href="/receipt/{{ $receipt["ID"] }}/createproduct">Produkt hinzufügen</a>
     <div class="receiptBlock">
         <ul>
