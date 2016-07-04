@@ -167,86 +167,15 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
         return view('createproduct');
     });
     
-    $app->post('/receipt/{id}/createproduct', function(Request $request, $id) {                        
-        $this->validate($request, [
-            'name' => 'required',
-            'totalPrice' => 'required|numeric|min:0',
-            'quantity' => 'required|numeric|min:1'            
-        ]);
-        
-        \DB::transaction(function () use ($request, $id) {
-            $receipt = \ListIt\Receipt::findOrFail($id);                                
-
-            $product = \ListIt\Product::firstOrCreate(['Name'=>$request->input('name')]);
-
-            $receipt_product = new \ListIt\Receipt_Product();
-            $receipt_product->receiptID = $receipt->ID;
-            $receipt_product->productID = $product->ID;
-            $receipt_product->TotalPrice = $request->input('totalPrice');
-            $receipt_product->Quantity = $request->input('quantity');
-            $receipt_product->save();
-        });
-        
-        return redirect('/receipt/'. $id);
-    });
+    $app->post('/receipt/{id}/createproduct', 'ProductController@create');
     
     $app->get('/createreceipt', function() {
         return view('createreceipt');
     });
     
-    $app->post('/createreceipt', function(Request $request) {
-        $this->validate($request, [
-            'country' => 'string',
-            'streetNr' => 'numeric',
-            'datum' => 'date'
-        ]);
-        
-        $receiptID = \DB::transaction(function () use ($request) {
-                        
-            $country = new \ListIt\Country();          
-            if(!empty($request->input('country'))) {
-                $country = \ListIt\Country::firstOrCreate(['Name'=>$request->input('company')]);
-            }
-                                                
-            $region = \ListIt\Region::firstOrCreate(['Name'=>$request->input('region'), 'CountryID'=>$country->ID]);            
-            
-            $street = new \ListIt\Country();
-            if(!empty($request->input('street'))) {
-                $street = \ListIt\Street::firstOrCreate(['Name'=>$request->input('street')]);            
-            }                
-            
-            $shoplocation = \ListIt\Shoplocation::firstOrCreate(['StreetNr'=>$request->input('streetNr'), 'StreetID'=>$street->ID, 'RegionID'=>$region->ID]);
-            
-            $company = new \ListIt\Country();          
-            if(!empty($request->input('company'))) {
-                $company = \ListIt\Company::firstOrCreate(['Name'=>$request->input('company')]);
-            }
-            
-            $company_shoplocation = \ListIt\Company_Shoplocation::firstOrCreate(['CompanyID'=>$company->ID, 'ShoplocationID'=>$shoplocation->ID]);
-                        
-            $user = \ListIt\User::where('APIToken', $request->session()->get('api-token'))->firstOrFail();
-            
-            $receipt = new \ListIt\Receipt();
-            $date = $request->input('datum');
-            empty($date) ? $receipt->Datum = null : $receipt->Datum = $date;
-            $receipt->UserID = $user->ID;
-            $receipt->CompanyShoplocationID = $company_shoplocation->ID;
-            $receipt->save();
-            
-            var_dump($receipt->ID);
-            
-            return $receipt->ID;                        
-        });
-        
-        return redirect('/receipt/'. $receiptID);
-        
-    });
+    $app->post('/createreceipt', 'ReceiptController@create');
     
-    $app->get('/receipt/{id}/deletereceipt', function($id)  {                               
-        \ListIt\Receipt::findOrFail($id)->delete();                             
-        
-        return redirect('/receipts');
-    });
+    $app->get('/receipt/{id}/deletereceipt', 'ReceiptController@delete');
     
     $app->delete('/receipt/{id}/receiptproduct/{receiptproductid}', function($id, $receiptproductid)  {                
         \ListIt\Receipt_Product::findOrFail($receiptproductid)->delete();                     
