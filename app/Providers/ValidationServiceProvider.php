@@ -9,7 +9,6 @@
 namespace ListIt\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Validation\Validator;
 
 class ValidationServiceProvider extends ServiceProvider
 {

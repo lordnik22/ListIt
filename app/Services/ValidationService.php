@@ -7,9 +7,23 @@
  */
 
 namespace ListIt\Services;
+use Illuminate\Http\Request;
+use Validator;
 
 class ValidationService {
-    public function getReceiptValidation($request) {                
+    
+    
+    
+    public function validate(Request $request, array $rules, array $messages = [], array $customAttributes = [])
+    {
+        $validator = Validator::make($request->all(), $rules, $messages, $customAttributes);
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator, new JsonResponse($validator->errors()->getMessages(), 422));
+        }
+    }
+    
+    public function getReceiptValidation(Request $request) {                
         $this->validate($request, [
             'country' => 'string',
             'streetNr' => 'numeric',
@@ -17,7 +31,7 @@ class ValidationService {
         ]);
     }
     
-    public function getProductValidation($request) {
+    public function getProductValidation(Request $request) {
         $this->validate($request, [
             'name' => 'required',
             'totalPrice' => 'required|numeric|min:0',
