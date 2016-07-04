@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 21. Jun 2016 um 15:26
+-- Erstellungszeit: 04. Jul 2016 um 11:57
 -- Server-Version: 10.1.13-MariaDB
 -- PHP-Version: 5.6.20
 
@@ -36,7 +36,10 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`ID`, `Name`) VALUES
-(1, 'McDonald''s');
+(1, 'McDonald''s'),
+(8, 'coop'),
+(9, 'Morgos'),
+(10, 'londoeye');
 
 -- --------------------------------------------------------
 
@@ -55,7 +58,15 @@ CREATE TABLE `company_shoplocation` (
 --
 
 INSERT INTO `company_shoplocation` (`ID`, `CompanyID`, `ShoplocationID`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(7, 8, 8),
+(8, 8, 9),
+(9, 8, 10),
+(10, 9, 11),
+(11, 9, 12),
+(12, NULL, 12),
+(16, 8, 16),
+(17, 10, 12);
 
 -- --------------------------------------------------------
 
@@ -73,7 +84,9 @@ CREATE TABLE `country` (
 --
 
 INSERT INTO `country` (`ID`, `Name`) VALUES
-(1, 'Schweiz');
+(1, 'Schweiz'),
+(9, 'coop'),
+(10, 'Morgos');
 
 -- --------------------------------------------------------
 
@@ -92,7 +105,14 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`ID`, `Name`) VALUES
 (1, 'Menu M 9 McNuggets'),
-(2, 'Hello Kitty Tasche');
+(2, 'Hello Kitty Tasche'),
+(3, 'hallo'),
+(4, 'rodi'),
+(6, 'hallo kitty Tascvhe'),
+(8, 'lol'),
+(9, 'lulul'),
+(10, 'Bananen'),
+(11, 'HotD0gg');
 
 -- --------------------------------------------------------
 
@@ -102,7 +122,7 @@ INSERT INTO `product` (`ID`, `Name`) VALUES
 
 CREATE TABLE `receipt` (
   `ID` int(10) UNSIGNED NOT NULL,
-  `Datum` datetime NOT NULL,
+  `Datum` datetime DEFAULT NULL,
   `UserID` int(10) UNSIGNED NOT NULL,
   `CompanyShoplocationID` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -113,7 +133,15 @@ CREATE TABLE `receipt` (
 
 INSERT INTO `receipt` (`ID`, `Datum`, `UserID`, `CompanyShoplocationID`) VALUES
 (6, '2016-05-24 00:00:00', 1, 1),
-(7, '2016-06-12 00:00:00', 10, 1);
+(7, '2016-06-12 00:00:00', 10, 1),
+(8, '0000-00-00 00:00:00', 78, 7),
+(15, '0000-00-00 00:00:00', 78, 9),
+(16, '2016-06-28 11:12:00', 78, 10),
+(17, '2016-06-28 11:13:21', 78, 11),
+(18, '2016-06-28 11:40:59', 78, 12),
+(19, '2016-06-28 11:41:14', 78, 12),
+(20, '2016-06-28 11:44:08', 78, 12),
+(21, '2016-06-28 21:23:00', 78, 12);
 
 -- --------------------------------------------------------
 
@@ -135,8 +163,8 @@ CREATE TABLE `receipt_product` (
 
 INSERT INTO `receipt_product` (`ID`, `ReceiptID`, `ProductID`, `Quantity`, `TotalPrice`) VALUES
 (3, 6, 1, 2, '30.0000'),
-(4, 6, 2, 1, '200.0000'),
-(7, 6, 2, 2, '3.0000');
+(4, 6, 11, 2, '3.0000'),
+(5, 6, 3, 2, '5.0000');
 
 -- --------------------------------------------------------
 
@@ -155,7 +183,11 @@ CREATE TABLE `region` (
 --
 
 INSERT INTO `region` (`ID`, `Name`, `CountryID`) VALUES
-(1, 'Baar', 1);
+(1, 'Baar', 1),
+(9, 'Zug', 9),
+(10, 'Boor', 10),
+(11, '', NULL),
+(15, 'hoi', NULL);
 
 -- --------------------------------------------------------
 
@@ -175,7 +207,13 @@ CREATE TABLE `shoplocation` (
 --
 
 INSERT INTO `shoplocation` (`ID`, `RegionID`, `StreetID`, `StreetNr`) VALUES
-(1, 1, 1, '62');
+(1, 1, 1, '62'),
+(8, 9, NULL, ''),
+(9, 9, 2, '123'),
+(10, 9, 3, '123'),
+(11, 10, 4, '3'),
+(12, 11, NULL, ''),
+(16, 15, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -193,7 +231,10 @@ CREATE TABLE `street` (
 --
 
 INSERT INTO `street` (`ID`, `Name`) VALUES
-(1, 'Zugerstrasse');
+(1, 'Zugerstrasse'),
+(2, 'glauaba'),
+(3, 'glauabaklfjkljklse'),
+(4, 'Beinhof');
 
 -- --------------------------------------------------------
 
@@ -241,7 +282,7 @@ INSERT INTO `user` (`ID`, `Name`, `Password`, `EMail`, `APIToken`) VALUES
 (75, 'hadkwd', '$2y$10$0dFUYTedPZpq/xZ3hLu6CekLQu4YLXllOHpZvGogavPfuFEKy5PZy', 'zztrashtrashzz@gmail.com', NULL),
 (76, 'ologisch', '$2y$10$Jv9hPZE6zn3ypnb7Re7ZxucbUYxADfbOso2kt1vEM/AmUIs8Mpm.C', 'olighsc@gmail.com', NULL),
 (77, 'asd', '$2y$10$Ayj/ucp87jizeQmYLma4juS48qkpM7fWmIThmx7DIATNZ.xBjS3CK', 'a.a@a.a', NULL),
-(78, 'alpha', '$2y$10$LD.AbVrP91fRPIpb6rgd9OLGd.5xQN.63JtNWFPBtCrd3iU0FNMCK', 'romenion@gmail.com', 'nKtXu88vuzfCdeZHEnrhkYamqIT2eXaWsY03sqNGdfwbbLLJPkPtj4zg4j2edUyZl2laGAHAqTWJ8i2KS8sHWeVnQHMNKpMeij0T6Nd5aPPYXtKgTdVWf8WWLJ4DNBuXFQJIQRKzueFhoS12bLBEH5NqpELg7RINXVHLZyeCOEIhOI2RTdzt63cTM3dL0WIxNHNw2oYwHXlRi3VoTnMa5LRxNR7it5T3HaVkOh37MqZeFHPDCWabW7FeyFDyLKE'),
+(78, 'alpha', '$2y$10$LD.AbVrP91fRPIpb6rgd9OLGd.5xQN.63JtNWFPBtCrd3iU0FNMCK', 'romenion@gmail.com', 'BunmVL0x2n7EGSHmJ858tmBIl3iDYqYkVuurpAIvCcpC01v55dVSoDc1mTLPDL1ZfemYSjazESdDee482FAczJeOmjUsxrCjBCAQuzit5sHNADroDEDtgeKyfIAGafaHu1Bz3FIIF8vZsCNq4We86kmPKFWnnGbAcBAProCL2uTKVU6G8KdlIbXPSMwex8vvcoSTwFWrktCDgpme1jcN7y7xpXIM8q5C8YAHAFyxhjGeLhbfkm6HmBLHChdxD11'),
 (79, 'roudlong', '$2y$10$I2MsW6YpludfWY1GkNN86Og9/hFXk7D8qFiEsV3J4sMLPVU/v1Zvy', 'roudlong@gmail.com', NULL),
 (80, 'gorgi', '$2y$10$1ez2iDoKZLbAyaL7tIvJnOl0dcNLuJDu4miLlcX8GHsdOLr9.PO2G', 'gorgi@gmail.com', NULL),
 (81, 'alp', '$2y$10$ZJl9jIipKAhu3GSCjHNMcup5csZcdGN/.bMtCGyWT8GlzpkkBBiVS', 'alp@gmail.com', NULL),
@@ -250,7 +291,8 @@ INSERT INTO `user` (`ID`, `Name`, `Password`, `EMail`, `APIToken`) VALUES
 (84, 'lol', '$2y$10$n1E68CrbmNPuzXY2rtyrCezkNIrfG9uL5kODunHinnGQ4RxEmKIPq', 'lol@gmail.com', NULL),
 (85, 'lol1', '$2y$10$DPiIKMbnCx4clmpkQncQXeurWFkoHZfIdwZi7m8/tIC4HbLBItOxS', 'lol1@gmail.com', NULL),
 (86, 'road', '$2y$10$pu5xA8F2NMOGjAluk1nYSuI91tWPWUH1wJMiPKwI7iIQuk5iqB2bS', 'road@gmail.com', NULL),
-(87, 'aha', '$2y$10$3khr5gpMEZmomWNSZoqbSOf2YkziJIRafeL5/t3eBohmXIU1CpYoW', 'aha@gmail.com', NULL);
+(87, 'aha', '$2y$10$3khr5gpMEZmomWNSZoqbSOf2YkziJIRafeL5/t3eBohmXIU1CpYoW', 'aha@gmail.com', NULL),
+(88, 'huhuhu', '$2y$10$6gn/JKTOWDKNlmeUp8h5OuChjgTvsmXYRK/JzTH6MpBh7vY.UGkBu', 'zztrashtsarashzz@gmail.com', 'XArqDVZFcWogC5dzsTsvuxHmr0sVQrwBKNur0X8sgVNzcmXNGgJujRvjGmq2o5aSAlrYQrRqzXjWhGcWtUzeXRME0vBOD5a87oH27pkXCVQdeY4bmDxYTkOINPjdR2tTYnsCKvSfvieNj2CTdkvKZ38ODo7zXFOyRSpF2V3Q5XvTbGNBJq8SYh5cxmWUrWkQSTkrM6MYSbGa3uufySMi2rPiL1LyOrylZwmYojBMWlGTUE5nQrJWg0EBGnde5HB');
 
 --
 -- Indizes der exportierten Tabellen
@@ -335,52 +377,52 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT für Tabelle `company`
 --
 ALTER TABLE `company`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT für Tabelle `company_shoplocation`
 --
 ALTER TABLE `company_shoplocation`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT für Tabelle `country`
 --
 ALTER TABLE `country`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT für Tabelle `product`
 --
 ALTER TABLE `product`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT für Tabelle `receipt`
 --
 ALTER TABLE `receipt`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT für Tabelle `receipt_product`
 --
 ALTER TABLE `receipt_product`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT für Tabelle `region`
 --
 ALTER TABLE `region`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT für Tabelle `shoplocation`
 --
 ALTER TABLE `shoplocation`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT für Tabelle `street`
 --
 ALTER TABLE `street`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 --
 -- Constraints der exportierten Tabellen
 --
@@ -403,8 +445,8 @@ ALTER TABLE `receipt`
 -- Constraints der Tabelle `receipt_product`
 --
 ALTER TABLE `receipt_product`
-  ADD CONSTRAINT `product_receiptproduct` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `receipt_receiptproduct` FOREIGN KEY (`ReceiptID`) REFERENCES `receipt` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `product_receiptproduct` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `receipt_receiptproduct` FOREIGN KEY (`ReceiptID`) REFERENCES `receipt` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints der Tabelle `region`

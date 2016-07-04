@@ -4,16 +4,12 @@ namespace ListIt\Http\Controllers;
 
 use Illuminate\Http\Request;
 use ListIt\Http\Controllers\Controller;
-use \ListIt\Services\ConversionService;
+use ListIt\Services\ValidationService;
 
 class ProductController extends Controller {
      
-    public function create(Request $request, $id) {                        
-        $this->validate($request, [
-            'name' => 'required',
-            'totalPrice' => 'required|numeric|min:0',
-            'quantity' => 'required|numeric|min:1'            
-        ]);
+    public function create(ValidationService $val, Request $request, $id) {                        
+         $val->getProductValidation($request);
         
         \DB::transaction(function () use ($request, $id) {
             $receipt = \ListIt\Receipt::findOrFail($id);                                

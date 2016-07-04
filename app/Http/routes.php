@@ -175,6 +175,8 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     
     $app->post('/createreceipt', 'ReceiptController@create');
     
+    $app->PUT('/receipt/{id}/updatereceipt', 'ReceiptController@update');
+    
     $app->get('/receipt/{id}/deletereceipt', 'ReceiptController@delete');
     
     $app->delete('/receipt/{id}/receiptproduct/{receiptproductid}', function($id, $receiptproductid)  {                

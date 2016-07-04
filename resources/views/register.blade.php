@@ -13,7 +13,7 @@
             </label>
             <label>
                 <span>Email</span>
-                <input type="password" name="password" value=""/>
+                <input type="text" name="email" value=""/>
             </label>
             <input type="submit" value="Registrieren"/>
         </fieldset>

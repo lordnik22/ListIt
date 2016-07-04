@@ -14,7 +14,7 @@
             <legend>Quittung erstellen</legend>
              <label>
                 <span>Datum</span>
-                <input type="datetime" name="datum" />
+                <input type="datetime-local" name="datum" />
             </label> 
             <label>
                 <span>Firma</span>
