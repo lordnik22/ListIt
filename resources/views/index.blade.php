@@ -3,8 +3,14 @@
 @section('title', 'Welcome')
 
 @section('content')
-    <div id="mainBlock">
-        @include('login')
-        @include('register')
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+            @include('login')
+        </div>
+        <div class="col s6">
+            @include('register')
+        </div>
     </div>
+</div>
 @endsection

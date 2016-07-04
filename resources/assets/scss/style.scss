@@ -1,4 +1,32 @@
-/*---GENERAL---*/
+@charset "UTF-8";
+
+
+$primary-color: #039be5;
+$secondary-color: #033bf5;
+$input-border-color: $primary-color;
+$input-margin: 15px 0 15px 0;
+@import "vendor/bower_components/Materialize/sass/materialize";
+
+
+#loggedOut {
+    background-image: url("/img/background.min.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;    
+}
+.container{
+    
+}
+button[type=submit]{
+    @extend .light-blue.darken-2;
+}
+label{
+    font-weight: 900;
+    text-shadow: 1px 1px black;
+    @extend  .light-blue-text.text-darken-2;
+}
+
+/*---GENERAL---*//*
 html, body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     width: 100%;
@@ -11,12 +39,6 @@ body{
     background-color: white;
 }
 
-#loggedOut {
-    background-image: url("/img/background.min.jpg");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;    
-}
 hr{
     width: 100%;
     border: none;
@@ -34,9 +56,9 @@ h1{
 #mainBlock, #registerBlock, hr, form legend, .receiptBlock{
     border-color: #1d768c !important;
 }
-/*---GENERAL_END---*/
+/*---GENERAL_END---*//*
 
-/*---INDEX---*/
+/*---INDEX---*//*
 #mainBlock {
     width: 50%;
     
@@ -73,14 +95,14 @@ h1{
     }
 }
 
-/*---INDEX_END---*/
+/*---INDEX_END---*//*
 
-/*---AddReceipt---*/
+/*---AddReceipt---*//*
 #addReceipt{
     background-color: #1d768c;
 }
-/*---AddReceipt_ENT---*/
-/*---NAV---*/
+/*---AddReceipt_ENT---*//*
+/*---NAV---*//*
 nav {
     .navbar{
         a:hover{
@@ -123,9 +145,9 @@ nav {
         }
     }
 }
-/*---NAV_END---*/
+/*---NAV_END---*//*
 
-/*---FORM---*/
+/*---FORM---*//*
 form{
     width: 100%;
     height: 100%;
@@ -163,9 +185,9 @@ form{
         }
     }
 }
-/*---FORM_END---*/
+/*---FORM_END---*//*
 
-/*---RECEIPTS---*/
+/*---RECEIPTS---*//*
 
 .receiptBlock:hover{
     background-color: #29a4c3 !important; 
@@ -215,9 +237,9 @@ form{
     
 }
 
-/*---RECEIPTS_END---*/
+/*---RECEIPTS_END---*//*
 
-/*---PRODUCTS---*/
+/*---PRODUCTS---*//*
 
 .productBlock{
     

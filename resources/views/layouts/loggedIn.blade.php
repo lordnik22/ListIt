@@ -1,22 +1,15 @@
 @extends('layouts.base.master')
 
 @section('basestructure')
-    <nav>
-        <div class="navboxes">
-            <div class="boxsmall"></div>
-            <div class="boxmiddle"></div>
-            <div class="boxlarge"></div>
-        </div>
-        <div class="navbar">
-            <a href="/receipts">Quittungen</a>
-            <a href="/receipts">Statistiken</a>
-            <a href="/index">Logout</a>
-        </div>
-        <div class="navboxes">
-            <div class="boxlarge"></div>
-            <div class="boxmiddle"></div>
-            <div class="boxsmall"></div>                                
-        </div>
-    </nav>
-    @yield('content')
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/receipts">Quittungen</a></li>
+            <li><a href="/receipts">Statistiken</a></li>
+            <li><a href="/index">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+@yield('content')
 @endsection

@@ -1,17 +1,15 @@
-<div id="loginBlock">
-    <form method="POST" action="/login">
-        <fieldset>
-            <legend>Login</legend>
-            <hr/>
-            <label>
-                <span>Benutzername</span>
-                <input type="text" name="user" value="{{ $name }}" />
-            </label>
-            <label>
-                <span>Passwort</span>
-                <input type="password" name="password" value="{{ $password }}"/>
-            </label>
-            <input type="submit" value="Login"/>
-        </fieldset>
-    </form>
-</div>
+<form method="POST" action="/login">
+    <h3>Login</h3>
+    <div class="input-field col s12">
+        <input id="loginname" name="user" type="text" value="{{ $name }}" />
+        <label for="loginname">Benutzername</label>
+    </div>
+    <div class="input-field col s12">
+        <input id="loginpassword" name="password" type="password" value="{{ $password }}" >
+        <label for="loginpassword">Passwort</label>
+    </div>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">
+        Login
+    </button>
+</form>
