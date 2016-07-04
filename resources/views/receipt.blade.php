@@ -10,6 +10,7 @@
     
     {{ $receipt["ID"] }}
     <a href="/receipt/{{ $receipt["ID"] }}/createproduct">Produkt hinzufügen</a>
+    <a href="/receipt/{{ $receipt["ID"] }}/updatereceipt">Quittung bearbeiten</a>
     <div class="productBlock">
         <table>
             <thead>

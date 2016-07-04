@@ -61,9 +61,17 @@ class ReceiptController extends Controller {
         //return var_dump($receipts[0]);
     }
     
-    public function getOne(ConversionService $conv, $id) {        
+    private function getOneReceiptViewModel($conv, $id) {
         $receipt = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')->findOrFail($id);
-        return view ('receipt', ['receipt' => $conv->getJsonReceipt($receipt)]);
+        return ['receipt' => $conv->getJsonReceipt($receipt)];
+    }
+    
+    public function getOne(ConversionService $conv, $id) {        
+        return view ('receipt', $this->getOneReceiptViewModel($conv, $id));
+    }
+    
+    public function showReceiptForm(ConversionService $conv, $id) {
+        return view ('createreceipt', $this->getOneReceiptViewModel($conv, $id));
     }
     
     public function update(ValidationService $val, Request $request, $id) {

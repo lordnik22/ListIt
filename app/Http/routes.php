@@ -161,6 +161,9 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     
     $app->get('/receipts', 'ReceiptController@get');
     
+    $app->get('/receipt/new', function() {
+        return view('createreceipt');
+    });
     $app->get('/receipt/{id}', 'ReceiptController@getOne');
     
     $app->get('/receipt/{id}/createproduct', function() {                        
@@ -169,13 +172,12 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     
     $app->post('/receipt/{id}/createproduct', 'ProductController@create');
     
-    $app->get('/createreceipt', function() {
-        return view('createreceipt');
-    });
     
-    $app->post('/createreceipt', 'ReceiptController@create');
+    $app->post('/receipt', 'ReceiptController@create');
     
-    $app->PUT('/receipt/{id}/updatereceipt', 'ReceiptController@update');
+    $app->get('/receipt/{id}/updatereceipt', 'ReceiptController@showReceiptForm');
+    
+    $app->put('/receipt/{id}/updatereceipt', 'ReceiptController@update');
     
     $app->get('/receipt/{id}/deletereceipt', 'ReceiptController@delete');
     
