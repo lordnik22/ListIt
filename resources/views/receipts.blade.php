@@ -7,7 +7,7 @@
     @unless (Auth::check())
         You are not signed in.
     @endunless
-    <div id="receiptsBlock">
+    <div class="container">
         <a href="/receipt/new">
             <div class="receiptBlock">
                 <img src="img/walros1.min.png" alt="Quittung hinzufügen"/>
