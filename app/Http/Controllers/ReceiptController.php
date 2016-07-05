@@ -70,7 +70,6 @@ class ReceiptController extends Controller {
                 
         
         return view('receipts', ['receipts' => $receipts]);
-        //return var_dump($receipts[0]);
     }
     
     private function getOneReceiptViewModel($conv, $id) {
