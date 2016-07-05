@@ -7,7 +7,7 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/receipts">Quittungen</a></li>
             <li><a href="/receipts">Statistiken</a></li>
-            <li><a href="/index">Logout</a></li>
+            <li><a href="/">Logout</a></li>
         </ul>
     </div>
 </nav>

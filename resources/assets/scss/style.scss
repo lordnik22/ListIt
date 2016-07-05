@@ -3,8 +3,11 @@
 
 $primary-color: #039be5;
 $secondary-color: darken(#039be5, 10%);
+$off-black: $secondary-color;
 $input-border-color: $primary-color;
+
 $input-margin: 15px 0 15px 0;
+
 @import "vendor/bower_components/Materialize/sass/materialize";
 
 html, body {
@@ -19,9 +22,20 @@ html, body {
     
 }
 .receipt{
+    div.card-content{
+        min-height: 150px;
+    }
     span{
         display: block;
     }
+}
+.receipt.add{
+    a{
+        display:block;
+    }
+}
+.receipt .card-action form {
+    display: inline-block;
 }
 .container.login{
     position: relative;
@@ -31,10 +45,7 @@ html, body {
         
     & > .container-blur {
         box-sizing: border-box;
-        border-radius: 35px;
-        background-color: rgba(255, 255, 255, 0.5);
-        filter: blur(5px);
-        -webkit-filter: blur(5px);
+        background-color: rgba(255, 255, 255, 0.6);       
         position: absolute;
         left: 0px;
         top: 0px;
@@ -57,7 +68,10 @@ label{
     font-weight: 900;
     @extend  .light-blue-text.text-darken-2;
 }
-
+img {
+    width: 100%;
+        height: 100%;
+}
 /*---GENERAL---*//*
 html, body {
     font-family: Verdana, Arial, Helvetica, sans-serif;

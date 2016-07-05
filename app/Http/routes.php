@@ -94,30 +94,12 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
     
     $app->get('/', 'HomeController@index');
     
-    $app->get('/login', function() {
-        return view('login', ['name' => 'alpha', 'password' => 'beta']);
-    });
-    
-    $app->get('/register', function() {
-        return view('register');
-    });
-    
-        //Startseite
-    $app->get('/index', function() {
-        return view('index', ['name' => 'alpha', 'password' => 'beta']);
-    });
-    $app->get('/home', function() {
-        return view('index', ['name' => 'alpha', 'password' => 'beta']);
-    });
-    //---------
-    
-           
     $app->post('/login', function(Request $request) {
         $this->validate($request, [
             'user' => 'required',
             'password' => 'required'
         ]);                        
-        echo "trying to log in.";
+        
         if ($request->input('user') && $request->input('password')) {
             $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                                     
         
@@ -127,11 +109,11 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
                 $user->save();
                 
                 $request->session()->put('api-token', $user->APIToken);
-                echo "Logged in.";
+                return RedirectResponse::create('/receipts');                
             }                                                                      
         }
+        return RedirectResponse::create('/');
         
-        return RedirectResponse::create('/receipts');
     });            
     
     $app->post('/users', function(Request $request) {
