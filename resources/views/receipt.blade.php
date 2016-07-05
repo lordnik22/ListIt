@@ -29,7 +29,7 @@
                         <td>{{ $receipt_product["Quantity"] }}</td>
                         <td>
                             <form action="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}" method="POST">
-                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_method" value="PUT">
                                 <button>Bearbeiten</button>
                             </form>                            
                             <form action="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}" method="POST">
