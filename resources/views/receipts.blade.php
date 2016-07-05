@@ -8,6 +8,15 @@
 You are not signed in.
 @endunless
 <div class="container">
+    <form action="/receipts" method="GET">
+        Quittung nach
+        <div class="input-field">
+            <select name="sortOption">                                
+                <option value="Datum">Datum</option>                
+            </select>
+        </div>
+        <input type="submit" value="sortieren" />
+    </form>
     <div class="row">
         <div class="col s12 m12">
             <a href="/receipt/new">

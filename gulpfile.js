@@ -19,11 +19,13 @@ function swallowError (error) {
 var paths = {
     sass: ['./resources/assets/scss/*.scss'
     ],
-    js: ['./vendor/bower_components/jquery/dist/jquery.js'
-                , './vendor/bower_components/Materialize/dist/js/materialize.js'
+    js: [ './vendor/bower_components/jquery/dist/jquery.js'
+        , './vendor/bower_components/Materialize/dist/js/materialize.js'
+        , './vendor/bower_components/Chart.js/dist/Chart.js'
+        , './resources/assets/js/statistics.js'
     ],
     fonts: ['./vendor/bower_components/Materialize/fonts/**/*.*'
-                , './vendor/bower_components/Materialize/dist/font/**/*.*'
+           , './vendor/bower_components/Materialize/dist/font/**/*.*'
     ]
 };
 

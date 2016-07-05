@@ -49,6 +49,18 @@ class ConversionService {
     
     private function getProperyOfNullObject($obj, $property) {
         return $obj === null ? null : $obj->$property;
-    }        
+    }
+
+    public function getArrayWeekOverview($receipt) {
+        $dw = date( "w", $timestamp);
+        /*
+        foreach() {
+            
+        }      
+        
+        return [
+            'Monday' => 
+        ]*/
+    }
 
 }

@@ -43,4 +43,31 @@ class ProductController extends Controller {
         
         return redirect('/receipt/'. $id);
     }
+    
+    public function get() {
+        
+    }
+            
+    public function get(ConversionService $conv, Request $request) {
+        
+        $sortOption = null;
+        if($request->input("sortOption") !== null) {           
+            $sortOption = $request->input('sortOption');            
+        }
+        else {
+            $sortOption = 'Datum';
+        }
+        
+        
+        $user = \ListIt\User::where('APIToken', $request->session()->get('api-token'))->firstOrFail();
+        
+        $receipts = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')
+                ->where('UserID', $user->ID)         
+                ->orderBy($sortOption, 'DESC')
+                ->get()->map([$conv, 'getArrayReceipt']);
+                
+        
+        return view('receipts', ['receipts' => $receipts]);
+        //return var_dump($receipts[0]);
+    }
 }

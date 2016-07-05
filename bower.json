@@ -5,6 +5,7 @@
     "livereload-js": "^2.2.1"
   },
   "dependencies": {
-    "Materialize": "materialize#^0.97.6"
+    "Materialize": "materialize#^0.97.6",
+    "Chart.js": "^2.1.6"
   }
 }

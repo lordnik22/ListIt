@@ -57,7 +57,9 @@ label{
     font-weight: 900;
     @extend  .light-blue-text.text-darken-2;
 }
-
+select{
+    display: block;
+}
 /*---GENERAL---*//*
 html, body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
