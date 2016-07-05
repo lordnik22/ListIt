@@ -5,10 +5,10 @@
 @section('content')
 <div id="addReceipt">        
         @if(!empty($receipt))
-            <form method="POST" action="/receipt/{{ $receipt["ID"] }}/updatereceipt" >
+            <form method="POST" action="/receipt/{{ $receipt["ID"] }}" >
             <input type="hidden" name="_method" value="PUT">
         @else
-            <form method="POST" action="/createreceipt" >        
+            <form method="POST" action="/receipt" >        
         @endif
           
         <fieldset>
