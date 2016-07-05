@@ -11,6 +11,11 @@ if (!function_exists('config_path')) {
     }
 }
 function reformat_date($date){
-    return DateTime::createFromFormat('Y-m-d H:i:s' , $date )->format('d. F, Y G:i');
+    if(isset($date)){
+        return DateTime::createFromFormat('Y-m-d H:i:s' , $date )->format('d. F, Y G:i');
+    }
+    else{
+        return "Datum: unbekannt";
+    }
 }
 

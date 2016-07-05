@@ -55,15 +55,15 @@ class ReceiptController extends Controller {
         
         $receipts = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')
                 ->where('UserID', $user->ID)         
-                ->get()->map([$conv, 'getJsonReceipt']);
-       
+
+                ->get()->map([$conv, 'getArrayReceipt']);
+        
         return view('receipts', ['receipts' => $receipts]);
-        //return var_dump($receipts[0]);
     }
     
     private function getOneReceiptViewModel($conv, $id) {
         $receipt = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')->findOrFail($id);
-        return ['receipt' => $conv->getJsonReceipt($receipt)];
+        return ['receipt' => $conv->getArrayReceipt($receipt)];
     }
     
     public function getOne(ConversionService $conv, $id) {        

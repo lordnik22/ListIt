@@ -163,7 +163,9 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
         return view('createproduct', ['ID' => $id]);
     });
     
-    $app->post('/receipt/{id}/product', 'ProductController@create');                            
+    $app->post('/receipt/{id}/product', 'ProductController@create');        
+    
+    $app->get('/receipt/{id}/receiptproduct/{receiptproductid}/update', 'ProductController@showProductForm');
     
     $app->put('/receipt/{id}/receiptproduct/{receiptproductid}', 'ProductController@update');
     
