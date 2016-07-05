@@ -177,11 +177,13 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     
     // PRODUCTS //
     
-    $app->get('/receipt/{id}/product/new', function() {                        
-        return view('createproduct');
+    $app->get('/receipt/{id}/product/new', function($id) {                                         
+        return view('createproduct', ['ID' => $id]);
     });
     
     $app->post('/receipt/{id}/product', 'ProductController@create');                            
+    
+    $app->put('/receipt/{id}/receiptproduct/{receiptproductid}', 'ProductController@update');
     
     $app->delete('/receipt/{id}/receiptproduct/{receiptproductid}', function($id, $receiptproductid)  {                
         \ListIt\Receipt_Product::findOrFail($receiptproductid)->delete();                     
