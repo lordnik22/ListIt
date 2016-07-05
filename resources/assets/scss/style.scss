@@ -3,9 +3,11 @@
 
 $primary-color: #039be5;
 $secondary-color: darken(#039be5, 10%);
-$off-black: $secondary-color;
-$input-border-color: $primary-color;
 
+$off-black: $secondary-color;
+$card-link-color: $secondary-color;
+
+$input-border-color: $primary-color;
 $input-margin: 15px 0 15px 0;
 
 @import "vendor/bower_components/Materialize/sass/materialize";
@@ -18,8 +20,7 @@ html, body {
     background-image: url("/img/background.min.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: 100% 100%;    
-    
+    background-size: 100% 100%;
 }
 .receipt{
     div.card-content{

@@ -9,13 +9,14 @@ You are not signed in.
 @endunless
 <div class="container">
     <form action="/receipts" method="GET">
-        Quittung nach
-        <div class="input-field">
+        <div class="input-field col s12">
             <select name="sortOption">                                
                 <option value="Datum">Datum</option>                
             </select>
         </div>
-        <input type="submit" value="sortieren" />
+        <button class="btn waves-effect waves-light" type="submit">
+            Sortieren
+        </button>
     </form>
     <div class="row">
         <div class="receipt add card col s6 m4 l3">
@@ -41,6 +42,7 @@ You are not signed in.
                     <input type="hidden" name="_method" value="DELETE">
                     <button><i class="material-icons activator right">delete</i></button>
                 </form>
+                <a href="/receipt/{{ $receipt["ID"] }}/update"><i class="material-icons">edit</i></a>
                 <i class="material-icons activator right">more_vert</i>
             </div>
             <div class="card-reveal">
@@ -69,7 +71,6 @@ You are not signed in.
         </div>                
 
         @empty
-        <p>Keine Quittungen</p>
         @endforelse
     </div>
 </div>
