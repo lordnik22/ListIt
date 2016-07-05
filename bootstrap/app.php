@@ -97,6 +97,7 @@ $app->register(ListIt\Providers\AppServiceProvider::class);
 $app->register(ListIt\Providers\LumenFixSessionManagerProvider::class);
 $app->register(ListIt\Providers\AuthServiceProvider::class);
 $app->register(ListIt\Providers\ConversionServiceProvider::class);
+$app->register(ListIt\Providers\ValidationServiceProvider::class);
 $app->register(\Illuminate\Session\SessionServiceProvider::class);
 /*
 |--------------------------------------------------------------------------

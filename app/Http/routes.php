@@ -132,9 +132,7 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
         }
         
         return RedirectResponse::create('/receipts');
-    });
-
-    
+    });            
     
     $app->post('/users', function(Request $request) {
         $this->validate($request, [
@@ -159,54 +157,37 @@ $app->group(['middleware' => 'origin', 'namespace' => '\ListIt\Http\Controllers'
 
 $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Controllers'], function () use ($app) {       
     
-    $app->get('/receipts', 'ReceiptController@get');
+    // RECEIPTS //       
     
-    $app->get('/receipt/{id}', 'ReceiptController@getOne');
-    
-    $app->get('/receipt/{id}/createproduct', function() {                        
-        return view('createproduct');
-    });
-    
-    $app->post('/receipt/{id}/createproduct', 'ProductController@create');
-    
-    $app->get('/createreceipt', function() {
+    $app->get('/receipt/new', function() {
         return view('createreceipt');
     });
     
-    $app->post('/createreceipt', 'ReceiptController@create');
+    $app->post('/receipt', 'ReceiptController@create');
     
-    $app->PUT('/receipt/{id}/updatereceipt', 'ReceiptController@update');
+    $app->get('/receipt/{id}/update', 'ReceiptController@showReceiptForm');
     
-    $app->get('/receipt/{id}/deletereceipt', 'ReceiptController@delete');
+    $app->put('/receipt/{id}', 'ReceiptController@update');
+    
+    $app->get('/receipt/{id}', 'ReceiptController@getOne');
+    
+    $app->get('/receipts', 'ReceiptController@get');        
+    
+    $app->delete('/receipt/{id}', 'ReceiptController@delete');
+    
+    // PRODUCTS //
+    
+    $app->get('/receipt/{id}/product/new', function() {                        
+        return view('createproduct');
+    });
+    
+    $app->post('/receipt/{id}/product', 'ProductController@create');                            
     
     $app->delete('/receipt/{id}/receiptproduct/{receiptproductid}', function($id, $receiptproductid)  {                
         \ListIt\Receipt_Product::findOrFail($receiptproductid)->delete();                     
         
         return redirect('/receipt/'. $id);
-    });
-    
-    /* 
-    $app->post('/login', function(Request $request) {
-        $this->validate($request, [
-            'user' => 'required',
-            'password' => 'required'
-        ]);        
-        
-        if ($request->input('user') && $request->input('password')) {
-            $user = \ListIt\User::where(['Name' => $request->input('user')])->first();                        
-            
-            if ($user != null && Hash::check($request->input('password'), $user->Password)) {
-                $user->APIToken = APIToken::generateToken(255);
-
-                $user->save();
-                
-                $request->session()->put('api-token', $user->APIToken);                             
-            }                                                                      
-        }
-        return redirect('receipts');
-        //$request->session()->put('key', 'value');               
-    }); */
-    
+    });        
     
 });
 
