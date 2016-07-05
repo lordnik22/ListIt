@@ -173,7 +173,13 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
         \ListIt\Receipt_Product::findOrFail($receiptproductid)->delete();                     
         
         return redirect('/receipt/'. $id);
-    });        
+    });     
+    
+    // STATISTICS //
+    
+    $app->get('/stats', function() {
+        return view('statistics');
+    });
     
 });
 
