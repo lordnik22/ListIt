@@ -3,7 +3,7 @@
 @section('title', 'Welcome')
 
 @section('content')
-<div class="container">
+<div class="container login">
     <div class="container-blur">
     </div>
         

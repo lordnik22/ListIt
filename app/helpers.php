@@ -10,3 +10,7 @@ if (!function_exists('config_path')) {
         return app()->basePath() . '/config' . ($path ? '/' . $path : $path);
     }
 }
+function reformat_date($date){
+    return DateTime::createFromFormat('Y-m-d H:i:s' , $date )->format('d. F, Y G:i');
+}
+
