@@ -55,7 +55,7 @@ class ReceiptController extends Controller {
         
         $receipts = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')
                 ->where('UserID', $user->ID)         
-                ->get()->map([$conv, 'getJsonReceipt']);
+                ->get()->map([$conv, 'getArrayReceipt']);
         
         return view('receipts', ['receipts' => $receipts]);
         //return var_dump($receipts[0]);
