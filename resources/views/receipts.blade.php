@@ -8,7 +8,7 @@
         You are not signed in.
     @endunless
     <div id="receiptsBlock">
-        <a href="/createreceipt">
+        <a href="/receipt/new">
             <div class="receiptBlock">
                 <img src="img/walros1.min.png" alt="Quittung hinzufügen"/>
                 Hinzufügen
@@ -24,8 +24,11 @@
                     <span>Strasse: {{ $receipt["ShopLocation"]["Street"] }}</span>
                     <span>StrassenNr: {{ $receipt["ShopLocation"]["StreetNr"] }}</span>
                     <span>Gesamtpreis: {{ number_format($receipt["TotalPrice"], 2) }}</span>
-                </a>
-                <a href="/receipt/{{ $receipt["ID"] }}/deletereceipt">Löschen</a>
+                </a>                
+                <form action="/receipt/{{ $receipt["ID"] }}" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button>Löschen</button>
+                </form>
             </div>                
         
         @empty
