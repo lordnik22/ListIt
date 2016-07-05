@@ -9,18 +9,18 @@
 namespace ListIt\Services;
 
 class ConversionService {
-    public function getJsonReceipt($receipt) {        
+    public function getArrayReceipt($receipt) {        
         return [
             'ID' => $receipt->ID,
             'Datum' => $this->getProperyOfNullObject($receipt, 'Datum'),
-            'Receipt_Products' => $receipt->receipt_products->map([$this, 'getJsonReceiptProduct']),
-            'Company' => $this->getJsonCompany($receipt->company_shoplocation->company),
-            'ShopLocation' => $this->getJsonShopLocation($receipt->company_shoplocation->shoplocation),
+            'Receipt_Products' => $receipt->receipt_products->map([$this, 'getArrayReceiptProduct']),
+            'Company' => $this->getArrayCompany($receipt->company_shoplocation->company),
+            'ShopLocation' => $this->getArrayShopLocation($receipt->company_shoplocation->shoplocation),
             'TotalPrice' => $receipt->receipt_products->sum('TotalPrice')
         ];
     }
 
-    public function getJsonReceiptProduct($receipt_product) {
+    public function getArrayReceiptProduct($receipt_product) {
         return [
             'ID' => $receipt_product->ID,
             'Quantity' => $receipt_product->Quantity,
@@ -29,14 +29,14 @@ class ConversionService {
         ]; 
     }
 
-    public function getJsonCompany($company) {
+    public function getArrayCompany($company) {
         return [
             'ID' => $this->getProperyOfNullObject($company, 'ID'),
             'Name' => $this->getProperyOfNullObject($company, 'Name')
         ];
     }
 
-    public function getJsonShopLocation($shoplocation) {
+    public function getArrayShopLocation($shoplocation) {
         $country = $this->getProperyOfNullObject($shoplocation->region, 'country');
         return [
             'ID' => $shoplocation->ID,
@@ -49,6 +49,6 @@ class ConversionService {
     
     private function getProperyOfNullObject($obj, $property) {
         return $obj === null ? null : $obj->$property;
-    }
+    }        
 
 }

@@ -63,7 +63,7 @@ class ReceiptController extends Controller {
     
     private function getOneReceiptViewModel($conv, $id) {
         $receipt = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')->findOrFail($id);
-        return ['receipt' => $conv->getJsonReceipt($receipt)];
+        return ['receipt' => $conv->getArrayReceipt($receipt)];
     }
     
     public function getOne(ConversionService $conv, $id) {        

@@ -23,6 +23,6 @@ class ReceiptController extends Controller {
     
     public function getOne(ConversionService $conv, $id) {        
         $receipt = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')->findOrFail($id);
-        return json_encode($conv->getJsonReceipt($receipt), JSON_PRETTY_PRINT);
+        return json_encode($conv->getArrayReceipt($receipt), JSON_PRETTY_PRINT);
     }
 }

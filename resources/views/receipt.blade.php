@@ -28,10 +28,7 @@
                         <td>{{ number_format($receipt_product["TotalPrice"], 2) }}</td>
                         <td>{{ $receipt_product["Quantity"] }}</td>
                         <td>
-                            <form action="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}" method="POST">
-                                <input type="hidden" name="_method" value="PUT">
-                                <button>Bearbeiten</button>
-                            </form>                            
+                            <a href="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}/update">Bearbeiten</a>                                                      
                             <form action="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button>Löschen</button>
