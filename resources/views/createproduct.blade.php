@@ -4,7 +4,14 @@
 
 @section('content')
 @parent
-<form action='#' method='POST'>        
+
+@if(!empty($receipt))
+            <form method="POST" action="/receipt/{{ $receipt["ID"] }}/update" >
+            <input type="hidden" name="_method" value="PUT">
+        @else
+            <form action='/receipt/{{ $ID }}/product' method='POST'> 
+        @endif
+       
     <label>
         Name:
         <input type="text" name="name" />

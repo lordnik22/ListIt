@@ -1,7 +1,10 @@
 {
-  "name": "HelloIonic",
+  "name": "listit",
   "private": "true",
   "devDependencies": {
     "livereload-js": "^2.2.1"
+  },
+  "dependencies": {
+    "Materialize": "materialize#^0.97.6"
   }
 }
