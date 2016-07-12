@@ -177,8 +177,12 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     
     // STATISTICS //
     
-    $app->get('/stats', function() {
-        return view('statistics');
+    $app->get('/stats', 'StatisticController@weekOverview');
+    
+    $app->get('/logout', function(Request $request) {        
+        $request->session()->forget('api-token');
+        
+        return redirect('/');
     });
     
 });

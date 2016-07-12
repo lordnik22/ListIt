@@ -10,16 +10,18 @@ use ListIt\Services\ValidationService;
 class ReceiptController extends Controller {
         
     public function create(ValidationService $val, Request $request) {
-        $val->getReceiptValidation($request);
+        $val->getReceiptValidation($request, $this);                
         
         $receiptID = \DB::transaction(function () use ($request) {
                         
             $country = new \ListIt\Country();          
             if(!empty($request->input('country'))) {
                 $country = \ListIt\Country::firstOrCreate(['Name'=>$request->input('company')]);
-            }
-                                                
+            }                                                            
+            
             $region = \ListIt\Region::firstOrCreate(['Name'=>$request->input('region'), 'CountryID'=>$country->ID]);            
+            
+            
             
             $street = new \ListIt\Country();
             if(!empty($request->input('street'))) {
@@ -67,8 +69,7 @@ class ReceiptController extends Controller {
                 ->where('UserID', $user->ID)         
                 ->orderBy($sortOption, 'DESC')
                 ->get()->map([$conv, 'getArrayReceipt']);
-                
-        
+                        
         return view('receipts', ['receipts' => $receipts]);
     }
     
@@ -86,7 +87,7 @@ class ReceiptController extends Controller {
     }
     
     public function update(ValidationService $val, Request $request, $id) {
-        $val->getReceiptValidation($request);
+        $val->getReceiptValidation($request, $this);
         
         
 

@@ -35,6 +35,7 @@ You are not signed in.
                     <span>Firma: {{ !empty($receipt["Company"]["Name"]) ? $receipt["Company"]["Name"] : "unbekannt" }}</span>
                     <span>Region: {{ !empty($receipt["ShopLocation"]["Region"]) ? $receipt["ShopLocation"]["Region"] : "unbekannt" }}</span>
                     <span>Land: {{ !empty($receipt["ShopLocation"]["Country"]) ? $receipt["ShopLocation"]["Country"] : "unbekannt" }}</span>
+                    <span>Gesamtpreis: {{ !empty($receipt["TotalPrice"]) ? $receipt["TotalPrice"] : "unbekannt" }}</span>
                 </a>   
             </div>
             <div class="card-action">

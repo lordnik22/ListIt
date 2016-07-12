@@ -9,14 +9,14 @@
 namespace ListIt\Services;
 
 class ConversionService {
-    public function getArrayReceipt($receipt) {        
+    public function getArrayReceipt($receipt) {                
         return [
             'ID' => $receipt->ID,
             'Datum' => $this->getProperyOfNullObject($receipt, 'Datum'),
             'Receipt_Products' => $receipt->receipt_products->map([$this, 'getArrayReceiptProduct']),
             'Company' => $this->getArrayCompany($receipt->company_shoplocation->company),
             'ShopLocation' => $this->getArrayShopLocation($receipt->company_shoplocation->shoplocation),
-            'TotalPrice' => $receipt->receipt_products->sum('TotalPrice')
+            'TotalPrice' => $receipt->receipt_products->sum('TotalPrice')            
         ];
     }
 
@@ -47,20 +47,35 @@ class ConversionService {
         ];
     }
     
-    private function getProperyOfNullObject($obj, $property) {
+    private function getProperyOfNullObject($obj, $property) {                
         return $obj === null ? null : $obj->$property;
     }
 
-    public function getArrayWeekOverview($receipt) {
-        $dw = date( "w", $timestamp);
-        /*
-        foreach() {
-            
-        }      
+    public function getArrayWeekOverview($receipts) {                
+        $receiptDays = [
+            'Monday' => 0,
+            'Tuesday' => 0,
+            'Wednesday' => 0,
+            'Thursday' => 0,
+            'Friday' => 0,
+            'Saturday' => 0,
+            'Sunday' => 0,
+        ];                                
         
-        return [
-            'Monday' => 
-        ]*/
+        foreach($receiptDays as $day => &$average)
+        {
+            $receiptsOfTheDay = $receipts->filter(function($receipt) use ($day) {
+                return date('l', strtotime($receipt["Datum"])) === $day;
+            })->groupBy('Datum');           
+            
+            var_dump($receiptsOfTheDay);
+            
+            if($receiptsOfTheDay->count() != 0) {
+                $average = $receiptsOfTheDay->map(function($receipt) {
+                return $receipt->Receipt_Products;
+            })->parts()->flatten()->sum('TotalPrice')/$receiptsOfTheDay->count();
+            }
+        }
+        return $receiptDays;
     }
-
 }

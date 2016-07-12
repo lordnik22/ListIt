@@ -36,6 +36,9 @@ class AuthServiceProvider extends ServiceProvider {
             else if($request->session()->get('api-token')) {
                 return \ListIt\User::where('APIToken', $request->session()->get('api-token'))->first();
             }
+            else {
+                return redirect('login');
+            }
                 
                 
             /*

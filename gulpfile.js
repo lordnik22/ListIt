@@ -7,6 +7,7 @@ var minifyCss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var sourcemaps = require('gulp-sourcemaps');
 
 function swallowError (error) {
 
@@ -21,7 +22,7 @@ var paths = {
     ],
     js: [ './vendor/bower_components/jquery/dist/jquery.js'
         , './vendor/bower_components/Materialize/dist/js/materialize.js'
-        , './vendor/bower_components/Chart.js/dist/Chart.js'
+        , './vendor/bower_components/Chart.js/dist/Chart.bundle.js'
         , './resources/assets/js/statistics.js'
     ],
     fonts: ['./vendor/bower_components/Materialize/fonts/**/*.*'
@@ -51,11 +52,12 @@ gulp.task('js', function (done) {
     gulp.src('./vendor/bower_components/livereload-js/dist/livereload.js')
             .pipe(gulp.dest('./public/js'));
     gulp.src(paths.js)
+            .pipe(sourcemaps.init())
             .pipe(concat('app.js'))
-            .pipe(gulp.dest('./public/js/'))
-            .pipe(uglify())
-            .on('error', swallowError)
-            .pipe(rename({extname: '.min.js'}))
+            //.pipe(uglify())
+            //.on('error', swallowError)
+            //.pipe(rename({extname: '.min.js'}))
+            .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest('./public/js/'))
             .on('end', done);
 });

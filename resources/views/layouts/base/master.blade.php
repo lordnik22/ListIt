@@ -13,7 +13,7 @@
             <script type="text/javascript" src="js/app.js"></script>
         @else
             <link rel="stylesheet" href="css/app.min.css" type="text/css" />
-            <script type="text/javascript" src="js/app.min.js"></script>
+            <script type="text/javascript" src="js/app.min.js"></script>            
         @endif
     </head>
     @yield('basestructure')
