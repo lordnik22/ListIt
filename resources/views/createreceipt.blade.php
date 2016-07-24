@@ -3,65 +3,70 @@
 @section('title', 'Quittung erstellen')
 
 @section('content')
-<div id="addReceipt">        
-        @if(!empty($receipt))
-            <form method="POST" action="/receipt/{{ $receipt["ID"] }}" >
-            <input type="hidden" name="_method" value="PUT">
-        @else
-            <form method="POST" action="/receipt" >        
-        @endif
-          
-        <fieldset>
-            <legend>Quittung erstellen</legend>
-             <label>
-                <span>Datum</span>
-                <input type="datetime-local" name="datum"/>
-            </label> 
-            <label>
-                <span>Firma</span>
-                <input type="text" name="company"
+<div class="container">        
+
+@if(!empty($receipt))
+    <form method="POST" action="/receipt/{{ $receipt["ID"] }}" >
+    <input type="hidden" name="_method" value="PUT">
+@else
+    <form method="POST" action="/receipt" >        
+@endif
+    <div class="row">
+        <h3>Quittung</h3>
+        <div class="col s12 m6">
+            <div class="input-field col s12 m6">
+                <input id="receiptdatum"  type="datetime-local" name="datum" value="" />
+                <label for="receiptdatum">Datum</label>
+            </div>
+
+            <div class="input-field col s12 m6">
+                <input id="receiptcompany"  type="text" name="company"
                     @if(!empty($receipt))
-                        value="{{ $receipt["Company"]["Name"] }}"                
+                    value="{{ $receipt["Company"]["Name"] }}"                
                     @endif
-                />
-            </label>
-            <label>
-                <span>Standort</span>
-                <label>
-                    <span>Region</span>
-                    <input type="text" name="region"
-                        @if(!empty($receipt))
-                            value="{{ $receipt["ShopLocation"]["Region"] }}"
-                        @endif                           
-                    /> 
-                </label>
-                <label>
-                    <span>Land</span>
-                    <input type="text" name="country"
-                        @if(!empty($receipt))
-                            value="{{ $receipt["ShopLocation"]["Country"] }}"
-                        @endif                           
-                    /> 
-                </label>    
-                <label>
-                    <span>Strasse</span>
-                    <input type="text" name="street"
-                        @if(!empty($receipt))
-                            value="{{ $receipt["ShopLocation"]["Street"] }}"
-                        @endif                           
                     />
-                </label>
-                <label>
-                    <span>StrassenNr</span>
-                    <input type="text" name="streetNr"
-                        @if(!empty($receipt))
-                            value="{{ $receipt["ShopLocation"]["StreetNr"] }}"
-                        @endif                           
+                <label for="receiptcompany">Firma</label>
+            </div>
+        
+            <h4>Standort</h4>
+
+            <div class="input-field col s12 m6">
+                <input id="receiptcompany"  type="text" name="region"
+                    @if(!empty($receipt))
+                    value="{{ $receipt["ShopLocation"]["Region"] }}"
+                    @endif                           
                     />
-                </label>      
-            </label>
-            <input type="submit" value="Speichern" />
-        </fieldset>
+                <label for="receiptregion">Region</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="receiptcountry"  type="text" name="country"
+                    @if(!empty($receipt))
+                    value="{{ $receipt["ShopLocation"]["Country"] }}"
+                    @endif                           
+                    />
+                <label for="receiptcountry">Land</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="receiptstreet"  type="text" name="street"
+                    @if(!empty($receipt))
+                    value="{{ $receipt["ShopLocation"]["Street"] }}"
+                    @endif                           
+                    />
+                <label for="receiptstreet">Strasse</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="receiptstreetnr"  type="text" name="streetNr"
+                           @if(!empty($receipt))
+                           value="{{ $receipt["ShopLocation"]["StreetNr"] }}"
+                           @endif                           
+                           />
+                <label for="receiptstreetnr">StrassenNr</label>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                Speichern
+            </button>
+        </div>               
+    </div>
     </form>
 </div>
 @endsection

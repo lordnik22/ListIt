@@ -22,7 +22,7 @@ You are not signed in.
         <div class="receipt add card col s6 m4 l3">
             <div class="card-content center">
                 <a href="/receipt/new">
-                    <i class="material-icons activator large">add</i>
+                    <i class="material-icons activator large">plus</i>
                 </a>
             </div>
         </div>
