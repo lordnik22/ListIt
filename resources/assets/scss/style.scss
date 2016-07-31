@@ -74,9 +74,8 @@ select{
     display: block;
 }
 
-img {
-    width: 100%;
-    height: 100%;
+.brand-logo img{
+    max-width: 50px;
 }
 /*---GENERAL---*//*
 html, body {

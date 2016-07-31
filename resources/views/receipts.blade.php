@@ -8,16 +8,12 @@
 You are not signed in.
 @endunless
 <div class="container">
-    <form action="/receipts" method="GET">
-        <div class="input-field col s12">
-            <select name="sortOption">                                
-                <option value="Datum">Datum</option>                
-            </select>
+    <div class="row">
+        <div class="col">
+            @include('filter')
         </div>
-        <button class="btn waves-effect waves-light" type="submit">
-            Sortieren
-        </button>
-    </form>
+    </div>
+    
     <div class="row">
         <div class="receipt add card col s6 m4 l3">
             <div class="card-content center">

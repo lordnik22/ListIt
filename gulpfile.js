@@ -19,9 +19,12 @@ function swallowError (error) {
 
 var paths = {
     sass: ['./resources/assets/scss/*.scss'
+          , './vendor/bower_components/Materialize/extras/noUiSlider/nouislider.css'
     ],
     js: [ './vendor/bower_components/jquery/dist/jquery.js'
         , './vendor/bower_components/Materialize/dist/js/materialize.js'
+        , './vendor/bower_components/Materialize/js/date_picker/picker.js'
+        , './vendor/bower_components/Materialize/extras/noUiSlider/nouislider.js'
         , './vendor/bower_components/Chart.js/dist/Chart.bundle.js'
         , './resources/assets/js/statistics.js'
     ],

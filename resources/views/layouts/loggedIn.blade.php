@@ -3,7 +3,7 @@
 @section('basestructure')
 <nav>
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
+        <a href="/receipts" class="brand-logo"><img src="/img/logoV2_0.png" alt="logo"/></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/receipts">Quittungen</a></li>
             <li><a href="/stats">Statistiken</a></li>

@@ -9,8 +9,6 @@
     @endunless
     <div class="container">
         <h1>Quittung</h1>
-        {{ $receipt["ID"] }}
-        <br>
         <a class="btn" href="/receipt/{{ $receipt["ID"] }}/product/new">Produkt hinzufügen</a>
         <div class="productBlock">
             <table>
@@ -29,10 +27,12 @@
                             <td>{{ number_format($receipt_product["TotalPrice"], 2) }}</td>
                             <td>{{ $receipt_product["Quantity"] }}</td>
                             <td>
-                                <a href="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}/update">Bearbeiten</a>                                                      
                                 <form action="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}" method="POST">
+                                    <a class="btn" href="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}/update">Bearbeiten</a>                                                      
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button>Löschen</button>
+                                    <button class="btn" type="submit" name="action">
+                                        Löschen
+                                    </button>
                                 </form>
                             </td>
                         </tr>
