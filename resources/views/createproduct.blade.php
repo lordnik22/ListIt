@@ -34,7 +34,7 @@
                         value="{{ $receipt_product["TotalPrice"] }}"                
                     @endif
                 />     
-                <label for="producttotalprice">Gesamtpreis</label>
+                <label for="producttotalprice">Gesamtpreis (Fr)</label>
             </div>  
             <button class="btn waves-effect waves-light" type="submit" name="action">
                 Speichern

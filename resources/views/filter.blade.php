@@ -14,8 +14,17 @@
             <input id="searchday" name="day" type="text" value="" />
             <label for="searchday">Tag</label>
         </div>
+        <div class="input-field col s4">
+            <input id="searchcompany" name="company" type="text" value="" />
+            <label for="searchcompany">Firma</label>
+        </div>
+        <div class="input-field col s4">
+            <input id="searchregion" name="region" type="text" value="" />
+            <label for="searchregion">Region</label>
+        </div>
         <h6>Gesamtpreis</h6>
         <div id="range-input" class="range-field noUi-target noUi-ltr noUi-horizontal noUi-background">
+
         </div>
 
     </div>
@@ -32,14 +41,14 @@
     </div>
 </form>
 <script>
-var connectSlider = document.getElementById('range-input');
+    var connectSlider = document.getElementById('range-input');
 
-noUiSlider.create(connectSlider, {
-	start: [20, 80],
-	connect: false,
-	range: {
+    noUiSlider.create(connectSlider, {
+        start: [20, 80],
+        connect: false,
+        range: {
             'min': 0,
             'max': 100
-	}
-});
+        }
+    });
 </script>

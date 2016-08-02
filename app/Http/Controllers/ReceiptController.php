@@ -54,22 +54,17 @@ class ReceiptController extends Controller {
     
     public function get(ConversionService $conv, Request $request) {
         
-        $sortOption = null;
-        if($request->input("sortOption") !== null) {           
-            $sortOption = $request->input('sortOption');            
-        }
-        else {
-            $sortOption = 'Datum';
-        }
-        
-        
         $user = \ListIt\User::where('APIToken', $request->session()->get('api-token'))->firstOrFail();
         
+        $sortOption = ($request->input("sortOption") !== null ? $request->input('sortOption') : 'Datum');
+        
         $receipts = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')
-                ->where('UserID', $user->ID)         
                 ->orderBy($sortOption, 'DESC')
-                ->get()->map([$conv, 'getArrayReceipt']);
-                        
+                ->get()
+                ->where('UserID', $user->ID)         
+                ->map([$conv, 'getArrayReceipt'])
+                ;
+        
         return view('receipts', ['receipts' => $receipts]);
     }
     
