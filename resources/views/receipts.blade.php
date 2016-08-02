@@ -18,8 +18,10 @@ You are not signed in.
         <div class="receipt add card col s6 m4 l3">
             <div class="card-content center">
                 <a href="/receipt/new">
-                    <i class="material-icons activator large">plus</i>
+                    <i class="material-icons activator large">add</i>
                 </a>
+            </div>
+            <div class="card-action">
             </div>
         </div>
 
@@ -31,7 +33,7 @@ You are not signed in.
                     <span>Firma: {{ !empty($receipt["Company"]["Name"]) ? $receipt["Company"]["Name"] : "unbekannt" }}</span>
                     <span>Region: {{ !empty($receipt["ShopLocation"]["Region"]) ? $receipt["ShopLocation"]["Region"] : "unbekannt" }}</span>
                     <span>Land: {{ !empty($receipt["ShopLocation"]["Country"]) ? $receipt["ShopLocation"]["Country"] : "unbekannt" }}</span>
-                    <span>Gesamtpreis: {{ !empty($receipt["TotalPrice"]) ? $receipt["TotalPrice"] : "unbekannt" }}</span>
+                    <span>Gesamtpreis: {{ !empty($receipt["TotalPrice"]) ? $receipt["TotalPrice"] . " CHF" : "unbekannt" }}</span>
                 </a>   
             </div>
             <div class="card-action">
@@ -53,7 +55,7 @@ You are not signed in.
                         @forelse ($receipt["Receipt_Products"] as $receipt_product)
                         <tr>
                             <td>{{ $receipt_product["Product"]['Name'] }}</td>                      
-                            <td>{{ number_format($receipt_product["TotalPrice"], 2) }}</td>
+                            <td>@if(!empty($receipt_product["TotalPrice"])) {{ number_format($receipt_product["TotalPrice"], 2) . " CHF" }} @endif </td>
                         </tr>
                         @empty
                         <tr>

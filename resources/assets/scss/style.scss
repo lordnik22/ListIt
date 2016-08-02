@@ -68,6 +68,11 @@ button[type=submit]{
 label{
     font-weight: 900;
     @extend  .light-blue-text.text-darken-2;
+    
+    .errormsg{
+        @extend  .red-text.text-darken-2;
+        font-style: italic;
+    }
 }
 
 select{
@@ -77,6 +82,7 @@ select{
 .brand-logo img{
     max-width: 50px;
 }
+
 /*---GENERAL---*//*
 html, body {
     font-family: Verdana, Arial, Helvetica, sans-serif;

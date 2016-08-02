@@ -15,7 +15,7 @@
                 <thead>
                     <tr>
                         <th>Produkt</th>
-                        <th>Gesamtpreis</th>
+                        <th>Gesamtpreis (CHF)</th>
                         <th>Anzahl</th>
                         <th>Löschen</th>
                     </tr>

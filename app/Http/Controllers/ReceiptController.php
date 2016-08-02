@@ -83,9 +83,6 @@ class ReceiptController extends Controller {
     
     public function update(ValidationService $val, Request $request, $id) {
         $val->getReceiptValidation($request, $this);
-        
-        
-
 
         \DB::transaction(function () use ($request, $id) {
             $user = \ListIt\User::where('APIToken', $request->session()->get('api-token'))->firstOrFail();
