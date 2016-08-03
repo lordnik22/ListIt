@@ -2,19 +2,24 @@
 
 @section('title', 'Quittungen')
 
-@section('content')
+@section('breadcrumbs')
+<a href="/receipts" class="breadcrumb">Quittungen</a>
+@endsection
 
+@section('content')
 @unless (Auth::check())
 You are not signed in.
 @endunless
 <div class="container">
-    <div class="row">
-        <div class="col">
+    
+    <div class="row z-depth-1">
+        <div class="col s12">
             @include('filter')
         </div>
     </div>
     
     <div class="row">
+        
         <div class="receipt add card col s6 m4 l3">
             <div class="card-content center">
                 <a href="/receipt/new">

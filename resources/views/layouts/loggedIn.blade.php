@@ -9,6 +9,9 @@
             <li><a href="/stats">Statistiken</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
+        <div class='center'>
+            @yield('breadcrumbs')
+        </div>
     </div>
 </nav>
 @yield('content')

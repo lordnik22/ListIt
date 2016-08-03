@@ -3,7 +3,7 @@
 @section('title', 'Quittung')
 
 @section('content')
-
+<div class="container">
     <form action="/stats" method="POST">
         <div class="input-field col s12">
             <select name="dateOption">                                
@@ -20,12 +20,12 @@
 
     <canvas id="myChart" width="300" height="100"></canvas>   
     <canvas id="cakeChart" width="600" height="100"></canvas>   
-    
-    <script>    
+
+    <script>
         drawChart({!! json_encode($data) !!});
         cakeChart();
     </script>
+</div>
 @endsection
 
 
-    

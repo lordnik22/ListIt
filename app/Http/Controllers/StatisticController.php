@@ -13,9 +13,7 @@ class StatisticController extends Controller {
         
         $receipts = \ListIt\Receipt::with('receipt_products', 'receipt_products.product')
                 ->where('UserID', $user->ID)->raw("MONTH(Datum)", '=', date('n'))
-                ->get();                        
-        
-        var_dump($receipts);
+                ->get();
         
         return view('statistics', ['data' => $conv->getArrayWeekOverview($receipts)]);
     }

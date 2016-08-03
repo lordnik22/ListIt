@@ -66,14 +66,14 @@ class ConversionService {
         {
             $receiptsOfTheDay = $receipts->filter(function($receipt) use ($day) {
                 return date('l', strtotime($receipt["Datum"])) === $day;
-            })->groupBy('Datum');           
-            
-            var_dump($receiptsOfTheDay);
+            });
             
             if($receiptsOfTheDay->count() != 0) {
                 $average = $receiptsOfTheDay->map(function($receipt) {
-                return $receipt->Receipt_Products;
-            })->parts()->flatten()->sum('TotalPrice')/$receiptsOfTheDay->count();
+                                return $receipt->receipt_products;
+                            })
+                            ->flatten()
+                            ->sum('TotalPrice') / $receiptsOfTheDay->count();
             }
         }
         return $receiptDays;

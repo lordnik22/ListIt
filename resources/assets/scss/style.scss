@@ -82,7 +82,12 @@ select{
 .brand-logo img{
     max-width: 50px;
 }
-
+.card-action{
+    min-height: 74px;
+}
+.noUi-horizontal .noUi-handle, .noUi-target .range-label{
+    background-color: $secondary-color;
+}
 /*---GENERAL---*//*
 html, body {
     font-family: Verdana, Arial, Helvetica, sans-serif;

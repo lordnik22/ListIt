@@ -2,10 +2,19 @@
 
 @section('title', 'Quittung erstellen')
 
+@section('breadcrumbs')
+    <a href="/receipts/" class="breadcrumb">Quittungen</a>
+    @if(!empty($receipt['ID']))
+        <a href="/receipt/new/" class="breadcrumb">Quittung bearbeiten</a>
+    @else
+        <a href="/receipt/new/" class="breadcrumb">Quittung hinzufügen</a>
+    @endif
+@endsection
+
 @section('content')
 <div class="container">        
 
-@if(!empty($receipt))
+@if(!empty($receipt['ID']))
     <form method="POST" action="/receipt/{{ $receipt["ID"] }}" >
     <input type="hidden" name="_method" value="PUT">
 @else

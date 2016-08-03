@@ -21,7 +21,7 @@ class ValidationService {
         }
     }*/
     
-    public function getReceiptValidation(Request $request, $parent) {                
+    public function getReceiptValidation(Request $request, $parent) {
         $parent->validate($request, [
             'country' => 'string',
             'streetNr' => 'numeric',
@@ -34,6 +34,7 @@ class ValidationService {
             'name' => 'required',
             'totalPrice' => 'required|numeric|min:0',
             'quantity' => 'required|numeric|min:1'            
-        ]);
+        ]
+        );
     }
 }

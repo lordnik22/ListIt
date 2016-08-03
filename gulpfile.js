@@ -18,14 +18,15 @@ function swallowError (error) {
 }
 
 var paths = {
-    sass: ['./resources/assets/scss/*.scss'
-          , './vendor/bower_components/Materialize/extras/noUiSlider/nouislider.css'
+    sass: [
+            './vendor/bower_components/Materialize/extras/noUiSlider/nouislider.css'
+          , './resources/assets/scss/*.scss'
     ],
     js: [ './vendor/bower_components/jquery/dist/jquery.js'
+        , './node_modules/Chart.js/dist/Chart.bundle.js'
         , './vendor/bower_components/Materialize/dist/js/materialize.js'
         , './vendor/bower_components/Materialize/js/date_picker/picker.js'
         , './vendor/bower_components/Materialize/extras/noUiSlider/nouislider.js'
-        , './vendor/bower_components/Chart.js/dist/Chart.bundle.js'
         , './resources/assets/js/statistics.js'
     ],
     fonts: ['./vendor/bower_components/Materialize/fonts/**/*.*'

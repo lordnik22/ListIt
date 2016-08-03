@@ -2,14 +2,18 @@
 
 @section('title', 'Quittung')
 
+@section('breadcrumbs')
+    <a href="/receipts" class="breadcrumb">Quittungen</a>
+    <a href="/receipt/{{ $receipt["ID"] }}/" class="breadcrumb">Quittung Nr.{{ $receipt["ID"] }}</a>
+@endsection
+
 @section('content')
 
     @unless (Auth::check())
         You are not signed in.
     @endunless
     <div class="container">
-        <h1>Quittung</h1>
-        <a class="btn" href="/receipt/{{ $receipt["ID"] }}/product/new">Produkt hinzufügen</a>
+        <a class="btn" href="/receipt/{{ $receipt["ID"] }}/product/new">+ Produkt</a>
         <div class="productBlock">
             <table>
                 <thead>

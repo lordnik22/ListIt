@@ -8,12 +8,14 @@ use ListIt\Services\ValidationService;
 use ListIt\Services\ConversionService;
 
 class ProductController extends Controller {
-
+    
+        
     public function create(ValidationService $val, Request $request, $id) {
         try{
             $val->getProductValidation($request, $this);
         } catch (\Illuminate\Validation\ValidationException $ex) {
-            $errorMessages = json_decode($ex->getResponse()->content());
+           
+            $errorMessages = $ex->getResponse()->getData();
             $receipt_product = new \ListIt\Receipt_Product;
             //TO DO: Sticky Form on the View with $receipt_product
             return view('createproduct', ['ID' => $id, 'receipt_product' => $receipt_product,'errorMessages' => $errorMessages]);
