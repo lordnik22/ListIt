@@ -13,7 +13,8 @@
         You are not signed in.
     @endunless
     <div class="container">
-        <a class="btn" href="/receipt/{{ $receipt["ID"] }}/product/new">+ Produkt</a>
+        <a class="btn" href="/receipt/{{ $receipt["ID"] }}/product/new"><i class="material-icons">add</i>Produkt</a>
+        <a class="btn" href="/receipt/6/update"><i class="material-icons">edit</i>Quittung</a>
         <div class="productBlock">
             <table>
                 <thead>
@@ -21,7 +22,6 @@
                         <th>Produkt</th>
                         <th>Gesamtpreis (CHF)</th>
                         <th>Anzahl</th>
-                        <th>Löschen</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,10 +32,10 @@
                             <td>{{ $receipt_product["Quantity"] }}</td>
                             <td>
                                 <form action="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}" method="POST">
-                                    <a class="btn" href="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}/update">Bearbeiten</a>                                                      
+                                    <a class="btn" href="/receipt/{{ $receipt["ID"] }}/receiptproduct/{{ $receipt_product["ID"] }}/update"><i class="material-icons">edit</i></a>                                                      
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button class="btn" type="submit" name="action">
-                                        Löschen
+                                        <i class="material-icons">delete</i>
                                     </button>
                                 </form>
                             </td>

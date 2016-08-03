@@ -36,9 +36,12 @@
                 <div class="col s12">
                     <h6>Gesamtpreis</h6>
                     <div class="col s12">
-                        <div id="range-input" class="range-field noUi-target noUi-ltr noUi-horizontal noUi-background">
-
+                        <input id="mintotalPrice" class="col s2" min="0" name="mintotalPrice" type="number" value="" />
+                        <div class="col s8">
+                            <div id="range-input" class="range-field noUi-target noUi-ltr noUi-horizontal noUi-background">
+                            </div>
                         </div>
+                        <input id="maxtotalPrice" class="col s2" min="0" name="maxtotalPrice" type="number" value="" />
                     </div>
                 </div>
             </div>
@@ -66,11 +69,33 @@
     var connectSlider = document.getElementById('range-input');
 
     noUiSlider.create(connectSlider, {
-        start: [20, 80],
+        start: [50, 250],
         connect: false,
         range: {
             'min': 0,
-            'max': 100
+            'max': 300
         }
+    });
+
+    var minInputNumber = document.getElementById('maxtotalPrice');
+    var maxInputNumber = document.getElementById('mintotalPrice');
+
+    connectSlider.noUiSlider.on('update', function (values, handle) {
+
+        var value = values[handle];
+
+        if (handle) {
+            minInputNumber.value = value;
+        } else {
+            maxInputNumber.value = value;
+        }
+    });
+
+    maxInputNumber.addEventListener('change', function () {
+        connectSlider.noUiSlider.set([this.value, null]);
+    });
+
+    minInputNumber.addEventListener('change', function () {
+        connectSlider.noUiSlider.set([null, this.value]);
     });
 </script>

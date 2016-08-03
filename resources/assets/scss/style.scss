@@ -61,9 +61,8 @@ html, body {
         transform: translateY(0);
     }
 }
-
-button[type=submit]{
-    @extend .light-blue.darken-2;
+button a{
+    @extend i;
 }
 label{
     font-weight: 900;

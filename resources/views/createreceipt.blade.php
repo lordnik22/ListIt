@@ -5,6 +5,7 @@
 @section('breadcrumbs')
     <a href="/receipts/" class="breadcrumb">Quittungen</a>
     @if(!empty($receipt['ID']))
+        <a href="/receipt/{{ $receipt['ID'] }}/" class="breadcrumb">Quittung Nr.{{ $receipt['ID'] }}</a>
         <a href="/receipt/new/" class="breadcrumb">Quittung bearbeiten</a>
     @else
         <a href="/receipt/new/" class="breadcrumb">Quittung hinzufügen</a>
@@ -27,7 +28,7 @@
             <div class="input-field col s12 m6">
                 <input id="receiptdatum" class="datepicker" type="date" name="datum" 
                     @if(!empty($receipt))
-                    value="{{ $receipt["Datum"] }}"                
+                    value="{{ substr($receipt["Datum"], 0, 10) }}"                
                     @endif
                     />
                 <label for="receiptdatum">Datum</label>

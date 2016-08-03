@@ -50,6 +50,7 @@ You are not signed in.
                 <i class="material-icons activator right">more_vert</i>
             </div>
             <div class="card-reveal">
+                <a class="left" href="/receipt/{{ $receipt["ID"] }}/product/new"><i class="material-icons">add</i>Produkt</a>
                 <i class="material-icons card-title right">close</i>
                 <table>
                     <thead>
