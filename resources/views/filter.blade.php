@@ -50,7 +50,7 @@
             <div class="col s12">
                 <h6>Sortierung</h6>
                 <div class="input-field col s12">
-                    <select name="sortOption">                                
+                    <select class="browser-default" name="sortOption">                                
                         <option value="Datum">Datum</option>                
                     </select>
                 </div>

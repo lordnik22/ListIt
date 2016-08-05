@@ -4,27 +4,59 @@
 
 @section('content')
 <div class="container">
-    <form action="/stats" method="POST">
-        <div class="input-field col s12">
-            <select name="dateOption">                                
-                <option value="sinceBegin">seit Anfang</option>
-                <option value="sinceYearBegin">seit Jahressstart</option>
-                <option value="sinceMonthBegin">seit Monatsstart</option>
-                <option value="sinceWeekBegin">seit Wochenstart</option>
-                <option value="lastWeek">letztes Jahr</option>
-                <option value="lastMonth">letzter Monat</option>
-                <option value="lastYear">letzte Woche</option>                
-            </select>
+    <div class="row">
+        <div class="row">
+        <div class="col s6">
+            
         </div>
-    </form>
-
-    <canvas id="myChart" width="300" height="100"></canvas>   
-    <canvas id="cakeChart" width="600" height="100"></canvas>   
-
-    <script>
-        drawChart({!! json_encode($data) !!});
-        cakeChart();
-    </script>
+        <div class="col s6">
+            <div class="col s12">
+                <div class="col s6">
+                    <input type="number" name=""/>
+                    <button>
+                        Reset
+                    </button>
+                </div>
+                <div class="col s6">
+                     <input type="number" name=""/>
+                    <button>
+                        Reset
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>auswahl</th>
+                            <th>täglich</th>
+                            <th>wöchentlich</th>
+                            <th>monatlich</th>
+                            <th>jährlich</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>alle Jahre</td>
+                        </tr>
+                        <tr>
+                            <td>[erstes Jahr]</td>
+                        </tr>
+                        <tr>
+                            <td>[zweites jahr]</td>
+                        </tr>
+                    </tbody>
+                    <tfood></tfood>
+                </table>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                
+            </div>
+        </div>
+        
+        
+    </div>
 </div>
 @endsection
 

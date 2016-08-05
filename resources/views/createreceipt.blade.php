@@ -3,7 +3,7 @@
 @section('title', 'Quittung erstellen')
 
 @section('breadcrumbs')
-    <a href="/receipts/" class="breadcrumb">Quittungen</a>
+    <a href="/receipts" class="breadcrumb">Quittungen</a>
     @if(!empty($receipt['ID']))
         <a href="/receipt/{{ $receipt['ID'] }}/" class="breadcrumb">Quittung Nr.{{ $receipt['ID'] }}</a>
         <a href="/receipt/new/" class="breadcrumb">Quittung bearbeiten</a>

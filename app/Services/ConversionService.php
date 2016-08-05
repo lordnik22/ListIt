@@ -53,19 +53,19 @@ class ConversionService {
 
     public function getArrayWeekOverview($receipts) {                
         $receiptDays = [
-            'Monday' => 0,
-            'Tuesday' => 0,
-            'Wednesday' => 0,
-            'Thursday' => 0,
-            'Friday' => 0,
-            'Saturday' => 0,
-            'Sunday' => 0,
+            1 => 0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
         ];                                
         
         foreach($receiptDays as $day => &$average)
         {
-            $receiptsOfTheDay = $receipts->filter(function($receipt) use ($day) {
-                return date('l', strtotime($receipt["Datum"])) === $day;
+            $receiptsOfTheDay = $receipts->filter(function($receipt) use ($day) {                
+                return date('N', strtotime($receipt["Datum"])) == $day;
             });
             
             if($receiptsOfTheDay->count() != 0) {

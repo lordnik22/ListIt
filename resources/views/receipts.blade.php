@@ -12,7 +12,7 @@ You are not signed in.
 @endunless
 <div class="container">
     
-    <div class="row z-depth-1">
+    <div id="filterdiv" class="row z-depth-1">
         <div class="col s12">
             @include('filter')
         </div>
