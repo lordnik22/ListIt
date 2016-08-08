@@ -177,8 +177,10 @@ $app->group(['middleware' => 'auth', 'origin', 'namespace' => '\ListIt\Http\Cont
     
     // STATISTICS //
     
-    $app->get('/stats', 'StatisticController@weekOverview');
+    $app->get('/stats', 'StatisticController@get');
     
+    $app->post('/compareYears', 'StatisticController@compareYears');
+        
     $app->get('/logout', function(Request $request) {        
         $request->session()->forget('api-token');
         

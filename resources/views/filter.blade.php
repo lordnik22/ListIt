@@ -12,11 +12,11 @@
                         <label for="searchyear">Jahr</label>
                     </div>
                     <div class="input-field col s4">
-                        <input id="searchmonth" name="month" type="number" value="" />
+                        <input id="searchmonth" name="month" type="number" max="12" value="" />
                         <label for="searchmonth">Monat</label>
                     </div>
                     <div class="input-field col s4">
-                        <input id="searchday" name="day" type="number" value="" />
+                        <input id="searchday" name="day" type="number" max="31"  value="" />
                         <label for="searchday">Tag</label>
                     </div>
                 </div>
